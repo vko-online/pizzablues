@@ -16,11 +16,18 @@ export type TopicsFilter = {
   [key: string]: boolean;
 };
 
+export type CategoriesFilter = {
+  [key: string]: boolean;
+};
+
 type State = TopicsFilter;
 
 function filter(state: State = {}, action: Action): State {
   if (action.type === 'APPLY_TOPICS_FILTER') {
     return action.topics;
+  }
+  if (action.type === 'APPLY_CATEGORIES_FILTER') {
+    return action.categories;
   }
   if (action.type === 'CLEAR_FILTER') {
     return {};

@@ -21,7 +21,8 @@ var MenuItem = require('./MenuItem');
 var LoginButton = require('../common/LoginButton');
 var ProfilePicture = require('../common/ProfilePicture');
 var GeneralScheduleView = require('./schedule/GeneralScheduleView');
-var MyScheduleView = require('./schedule/MyScheduleView');
+var GeneralProductView = require('./schedule/GeneralProductView');
+// var MyScheduleView = require('./schedule/MyScheduleView');
 var unseenNotificationsCount = require('./notifications/unseenNotificationsCount');
 
 var { switchTab, logOutWithPrompt } = require('../actions');
@@ -123,20 +124,20 @@ class F8TabsView extends React.Component {
           {accountItem}
         </Image>
         <MenuItem
-          title="Schedule"
-          selected={this.props.tab === 'schedule'}
-          onPress={this.onTabSelect.bind(this, 'schedule')}
+          title="Products"
+          selected={this.props.tab === 'product'}
+          onPress={this.onTabSelect.bind(this, 'product')}
           icon={scheduleIcon}
           selectedIcon={scheduleIconSelected}
         />
-        {myF8Item}
-        <MenuItem
+        {/*{myF8Item}*/}
+        {/*<MenuItem
           title="Maps"
           selected={this.props.tab === 'map'}
           onPress={this.onTabSelect.bind(this, 'map')}
           icon={require('./maps/img/maps-icon.png')}
           selectedIcon={require('./maps/img/maps-icon-active.png')}
-        />
+        />*/}
         <MenuItem
           title="Notifications"
           selected={this.props.tab === 'notifications'}
@@ -159,6 +160,12 @@ class F8TabsView extends React.Component {
 
   renderContent() {
     switch (this.props.tab) {
+      case 'product':
+        return (
+          <GeneralProductView
+            navigator={this.props.navigator}
+            />
+        );
       case 'schedule':
         return (
           <GeneralScheduleView
@@ -166,16 +173,16 @@ class F8TabsView extends React.Component {
           />
         );
 
-      case 'my-schedule':
+      /*case 'my-schedule':
         return (
           <MyScheduleView
             navigator={this.props.navigator}
             onJumpToSchedule={() => this.props.onTabSelect('schedule')}
           />
-        );
+        );*/
 
-      case 'map':
-        return <F8MapView />;
+      // case 'map':
+      //   return <F8MapView />;
 
       case 'notifications':
         return <F8NotificationsView navigator={this.props.navigator} />;

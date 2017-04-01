@@ -6,7 +6,7 @@
 const React = require('react');
 const F8Header = require('F8Header');
 const F8Colors = require('F8Colors');
-const TopicItem = require('./TopicItem');
+const CategoryItem = require('./CategoryItem');
 const F8Button = require('F8Button');
 var ItemsWithSeparator = require('../common/ItemsWithSeparator');
 
@@ -19,28 +19,28 @@ const {
 
 const shallowEqual = require('fbjs/lib/shallowEqual');
 const {
-  applyTopicsFilter,
+  applyCategoriesFilter,
 } = require('../actions');
 const {connect} = require('react-redux');
 
 class FilterScreen extends React.Component {
   props: {
     isLoggedIn: boolean,
-    topics: Array<string>;
-    selectedTopics: {[id: string]: boolean};
+    categories: Array<string>;
+    selectedCategories: {[id: string]: boolean};
     dispatch: (action: any) => void;
     navigator: any;
     onClose: ?() => void;
   };
   state: {
-    selectedTopics: {[id: string]: boolean};
+    selectedCategories: {[id: string]: boolean};
     anim: Animated.Value;
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedTopics: {...this.props.selectedTopics},
+      selectedCategories: {...this.props.selectedCategories},
       anim: new Animated.Value(0),
     };
 
@@ -50,18 +50,18 @@ class FilterScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selectedTopics !== nextProps.selectedTopics) {
-      this.setState({selectedTopics: {...nextProps.selectedTopics}});
+    if (this.props.selectedCategories !== nextProps.selectedCategories) {
+      this.setState({selectedCategories: {...nextProps.selectedCategories}});
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.selectedTopics !== nextState.selectedTopics) {
-      const changedTopics = !shallowEqual(
-        nextProps.selectedTopics,
-        nextState.selectedTopics,
+    if (this.state.selectedCategories !== nextState.selectedCategories) {
+      const changedCategories = !shallowEqual(
+        nextProps.selectedCategories,
+        nextState.selectedCategories,
       );
-      const toValue = changedTopics ? 1 : 0;
+      const toValue = changedCategories ? 1 : 0;
       Animated.spring(this.state.anim, {toValue}).start();
     }
   }
@@ -71,24 +71,24 @@ class FilterScreen extends React.Component {
       inputRange: [0, 1],
       outputRange: [-100, 0],
     });
-    var topics = this.props.topics.map((topic, ii) => (
-      <TopicItem
-        key={topic}
-        topic={topic}
-        color={F8Colors.colorForTopic(this.props.topics.length, ii)}
-        isChecked={this.state.selectedTopics[topic]}
-        onToggle={this.toggleTopic.bind(this, topic)}
+    var categories = this.props.categories.map((category, ii) => (
+      <CategoryItem
+        key={category}
+        category={category}
+        color={F8Colors.colorForCategory(this.props.categories.length, ii)}
+        isChecked={this.state.selectedCategories[category]}
+        onToggle={this.toggleCategory.bind(this, category)}
       />
     ));
-    var selectedAnyTopics = this.props.topics.some(
-      (topic) => this.state.selectedTopics[topic]
+    var selectedAnyCategories = this.props.categories.some(
+      (topic) => this.state.selectedCategories[topic]
     );
 
     let leftItem, rightItem;
     if (this.props.navigator) {
       leftItem = {title: 'Cancel', onPress: this.close};
     }
-    if (selectedAnyTopics) {
+    if (selectedAnyCategories) {
       rightItem = {
         title: 'Clear',
         icon: require('../common/img/x-white.png'),
@@ -106,7 +106,7 @@ class FilterScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollview}>
           <ItemsWithSeparator separatorStyle={styles.separator}>
-            {topics}
+            {categories}
           </ItemsWithSeparator>
         </ScrollView>
         <Animated.View style={[styles.applyButton, {bottom}]}>
@@ -119,19 +119,19 @@ class FilterScreen extends React.Component {
     );
   }
 
-  toggleTopic(topic: string, value: boolean) {
-    var selectedTopics = {...this.state.selectedTopics};
-    var value = !selectedTopics[topic];
+  toggleCategory(topic: string, value: boolean) {
+    var selectedCategories = {...this.state.selectedCategories};
+    var value = !selectedCategories[topic];
     if (value) {
-      selectedTopics[topic] = true;
+      selectedCategories[topic] = true;
     } else {
-      delete selectedTopics[topic];
+      delete selectedCategories[topic];
     }
-    this.setState({selectedTopics});
+    this.setState({selectedCategories});
   }
 
   applyFilter() {
-    this.props.dispatch(applyTopicsFilter(this.state.selectedTopics));
+    this.props.dispatch(applyCategoriesFilter(this.state.selectedCategories));
     this.close();
   }
 
@@ -146,7 +146,7 @@ class FilterScreen extends React.Component {
   }
 
   clearFilter() {
-    this.setState({selectedTopics: {}});
+    this.setState({selectedCategories: {}});
   }
 }
 
@@ -174,9 +174,8 @@ var styles = StyleSheet.create({
 function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn,
-    friendsSchedules: store.friendsSchedules,
-    topics: store.topics,
-    selectedTopics: store.filter,
+    categories: store.categories,
+    selectedCategories: store.filter,
   };
 }
 

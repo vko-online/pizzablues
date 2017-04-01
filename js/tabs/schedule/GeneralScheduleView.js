@@ -96,21 +96,21 @@ class GeneralScheduleView extends React.Component {
     return [
       <ScheduleListView
         title="Пицца Блюз"
-        key="pizzaBlues"
+        key="goingTab"
         sessions={this.props.sessions}
         renderEmptyList={this.renderEmptyList}
         navigator={this.props.navigator}
         />,
       <ScheduleListView
         title="Масленица"
-        key="maslenica"
+        key="maybeTab"
         sessions={this.props.sessions}
         renderEmptyList={this.renderEmptyList}
         navigator={this.props.navigator}
         />,
       <ScheduleListView
         title="Теплица"
-        key="teplica"
+        key="maybeTab2"
         sessions={this.props.sessions}
         renderEmptyList={this.renderEmptyList}
         navigator={this.props.navigator}

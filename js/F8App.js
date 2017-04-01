@@ -23,6 +23,8 @@ var {
   loadSurveys,
   loadPages,
   loadFaqs,
+  loadStores,
+  loadProducts,
 } = require('./actions');
 var { updateInstallation } = require('./actions/installation');
 var { connect } = require('react-redux');
@@ -42,6 +44,8 @@ var F8App = React.createClass({
     this.props.dispatch(loadSurveys());
     this.props.dispatch(loadPages());
     this.props.dispatch(loadFaqs());
+    this.props.dispatch(loadStores());
+    this.props.dispatch(loadProducts());
 
     updateInstallation({ version });
     CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });

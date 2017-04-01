@@ -17,7 +17,7 @@ const LOCATION_COLORS = {
   'ALMATY': 'red',
 };
 
-function colorForLocation(location: ?string): string {
+function colorForLocation(location: ? string): string {
   if (!location) {
     return 'black';
   }
@@ -35,6 +35,10 @@ function colorForTopic(count: number, index: number): string {
   return `hsl(${hue}, 74%, 65%)`;
 }
 
+function colorForCategory(count: number, index: number): string {
+  const hue = Math.round(360 * index / (count + 1));
+  return `hsl(${hue}, 74%, 65%)`;
+}
 module.exports = {
   actionText: '#3FB4CF',
   inactiveText: '#9B9B9B',
@@ -44,4 +48,5 @@ module.exports = {
   darkBackground: '#183E63',
   colorForLocation,
   colorForTopic,
+  colorForCategory,
 };

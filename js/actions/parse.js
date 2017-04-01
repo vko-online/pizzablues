@@ -14,11 +14,17 @@ const Maps = Parse.Object.extend('Maps');
 const Page = Parse.Object.extend('Page');
 const FAQ = Parse.Object.extend('FAQ');
 const Notification = Parse.Object.extend('Notification');
+const Product = Parse.Object.extend('Product');
+const Store = Parse.Object.extend('Store');
+
 
 function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
     return query.find({
       success: (list) => {
+        if (type === 'LOADED_STORES') {
+          console.log(list);
+        }
         // We don't want data loading to interfere with smooth animations
         InteractionManager.runAfterInteractions(() => {
           // Flow can't guarantee {type, list} is a valid action
@@ -35,7 +41,6 @@ module.exports = {
     loadParseQuery(
       'LOADED_SESSIONS',
       new Parse.Query('Agenda')
-        // .greaterThan('startTime', new Date())
         .include('speakers')
         .ascending('startTime')
     ),
@@ -48,4 +53,8 @@ module.exports = {
 
   loadNotifications: (): ThunkAction =>
     loadParseQuery('LOADED_NOTIFICATIONS', new Parse.Query(Notification)),
+  loadProducts: (): ThunkAction =>
+    loadParseQuery('LOADED_PRODUCTS', new Parse.Query(Product).include('store')),
+  loadStores: (): ThunkAction =>
+    loadParseQuery('LOADED_STORES', new Parse.Query(Store)),
 };

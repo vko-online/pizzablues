@@ -15,13 +15,20 @@ async function importClass(data) {
   const Store = Parse.Object.extend('Store');
   const Product = Parse.Object.extend('Product');
 
+  console.log('Cleaning old', 'store, product', 'data');
+
+  await new Parse.Query(Store)
+    .each(record => record.destroy());
+  await new Parse.Query(Product)
+    .each(record => record.destroy());
+
   let sObj = new Store();
   sObj.set('title', data.title);
   sObj.set('hours', data.hours);
   sObj.set('phones', data.phones);
   sObj.set('image', data.image);
-
   sObj = await sObj.save();
+
   for (var i = 0; i < data.products.length; i++) {
     var p = data.products[i];
     let pObj = new Product();
@@ -31,8 +38,8 @@ async function importClass(data) {
     pObj.set('price', p.price);
     pObj.set('otherPrice', p.otherPrice);
     pObj.set('image', p.image);
+    pObj.set('store', sObj);
     pObj = await pObj.save();
-    sObj.relation('products').add(pObj);
   }
 }
 
@@ -46,4 +53,6 @@ async function main() {
 }
 
 main()
-  .then(console.dir, console.error);
+  .then(console.dir, (a, b) => {
+    console.log(a, b);
+  });

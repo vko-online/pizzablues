@@ -14,7 +14,6 @@ const configActions = require('./config');
 const surveyActions = require('./surveys');
 const testActions = require('./test');
 const installationActions = require('./installation');
-const formActions = require('./form');
 
 module.exports = {
   ...loginActions,
@@ -27,5 +26,4 @@ module.exports = {
   ...parseActions,
   ...navigationActions,
   ...installationActions,
-  ...formActions,
 };

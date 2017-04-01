@@ -8,8 +8,9 @@
 var F8Colors = require('F8Colors');
 var F8InfoView = require('F8InfoView');
 var F8NotificationsView = require('F8NotificationsView');
-var GeneralScheduleView = require('./schedule/GeneralScheduleView');
-var MyScheduleView = require('./schedule/MyScheduleView');
+// var GeneralScheduleView = require('./schedule/GeneralScheduleView');
+var GeneralProductView = require('./product/GeneralProductView');
+// var MyScheduleView = require('./schedule/MyScheduleView');
 var React = require('React');
 var TabBarIOS = require('TabBarIOS');
 var TabBarItemIOS = require('TabBarItemIOS');
@@ -39,6 +40,16 @@ class F8TabsView extends React.Component {
       <TabBarIOS tintColor={F8Colors.darkText}>
         <TabBarItemIOS
           title="Меню"
+          selected={this.props.tab === 'product'}
+          onPress={this.onTabSelect.bind(this, 'product')}
+          icon={require('./schedule/img/schedule-icon-1.png')}
+          selectedIcon={require('./schedule/img/schedule-icon-1-active.png')}>
+          <GeneralProductView
+            navigator={this.props.navigator}
+          />
+        </TabBarItemIOS>
+        {/*<TabBarItemIOS
+          title="Меню"
           selected={this.props.tab === 'schedule'}
           onPress={this.onTabSelect.bind(this, 'schedule')}
           icon={require('./schedule/img/schedule-icon-1.png')}
@@ -46,7 +57,7 @@ class F8TabsView extends React.Component {
           <GeneralScheduleView
             navigator={this.props.navigator}
           />
-        </TabBarItemIOS>
+        </TabBarItemIOS>*/}
         {/*<TabBarItemIOS
           title="Корзина"
           selected={this.props.tab === 'my-schedule'}
