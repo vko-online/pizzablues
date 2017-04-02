@@ -86,11 +86,11 @@ class FilterScreen extends React.Component {
 
     let leftItem, rightItem;
     if (this.props.navigator) {
-      leftItem = {title: 'Cancel', onPress: this.close};
+      leftItem = {title: 'Отмена', onPress: this.close};
     }
     if (selectedAnyCategories) {
       rightItem = {
-        title: 'Clear',
+        title: 'Очистить',
         icon: require('../common/img/x-white.png'),
         onPress: this.clearFilter,
       };
@@ -98,7 +98,7 @@ class FilterScreen extends React.Component {
     return (
       <View style={styles.container}>
         <F8Header
-          title="Filter"
+          title="Категории"
           leftItem={leftItem}
           rightItem={rightItem}
         />
@@ -111,7 +111,7 @@ class FilterScreen extends React.Component {
         </ScrollView>
         <Animated.View style={[styles.applyButton, {bottom}]}>
           <F8Button
-            caption="Apply filters"
+            caption="Применить"
             onPress={this.applyFilter}
           />
         </Animated.View>

@@ -217,7 +217,7 @@ var styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   centerItem: {
-    flex: 2,
+    flex: 1,
     alignItems: 'center',
   },
   rightItem: {

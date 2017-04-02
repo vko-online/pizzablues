@@ -81,8 +81,8 @@ class SessionsCarusel extends React.Component {
 
     const selectedIndex = flatSessionsList.findIndex((s) => s.id === this.props.session.id);
     if (selectedIndex === -1) {
-      console.log(this.props.session);
-      console.log(flatSessionsList);
+      // console.log(this.props.session);
+      // console.log(flatSessionsList);
     }
 
     this.state = {

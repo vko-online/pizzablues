@@ -36,7 +36,6 @@ class F8InfoView extends React.Component {
   props: Props;
 
   constructor(props) {
-    console.log('props', props);
     super(props);
   }
 

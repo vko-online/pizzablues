@@ -17,7 +17,8 @@ var FilterScreen = require('../../filter/FilterScreen');
 var { connect } = require('react-redux');
 var {switchStore} = require('../../actions');
 
-import type {Product, Store } from '../../reducers/products';
+import type {Product } from '../../reducers/products';
+import type {Store } from '../../reducers/stores';
 
 // TODO: Move from reselect to memoize?
 var { createSelector } = require('reselect');
@@ -53,10 +54,9 @@ class GeneralProductView extends React.Component {
   }
 
   render() {
-    console.log('storeId', this.props.storeId);
     const filterItem = {
       icon: require('../../common/img/filter.png'),
-      title: 'Filter',
+      title: 'Фильтр',
       onPress: this.openFilterScreen,
     };
 
@@ -66,7 +66,7 @@ class GeneralProductView extends React.Component {
         selectedIndex = index;
         return;
       }
-    })
+    });
 
     const filterHeader = Object.keys(this.props.filter).length > 0
       ? <FilterHeader />
@@ -74,11 +74,10 @@ class GeneralProductView extends React.Component {
 
     const content = (
       <ListContainer
-        title="Меню"
         selectedSegment={selectedIndex}
         onSegmentChange={this.switchStore}
-        backgroundImage={require('./img/schedule-background.png')}
-        backgroundColor="#5597B8"
+        backgroundImage={require('./img/product-background2.jpg')}
+        backgroundColor="#be2026"
         selectedSectionColor="#51CDDA"
         stickyHeader={filterHeader}
         leftItem={filterItem}>
@@ -121,8 +120,8 @@ class GeneralProductView extends React.Component {
   renderEmptyList() {
     return (
       <EmptyProduct
-        title={'No products match the filter'}
-        text="Remove the filters."
+        title={'Не найдет продукт подходящий под фильтр'}
+        text="Очистите фильтр."
       />
     );
   }

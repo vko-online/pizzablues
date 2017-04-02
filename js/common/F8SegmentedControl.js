@@ -11,6 +11,7 @@ var TouchableOpacity = require('TouchableOpacity');
 // var View = require('View');
 var ScrollView = require('ScrollView');
 var Platform = require('Platform');
+var Dimensions = require('Dimensions');
 
 class F8SegmentedControl extends React.Component {
   props: {
@@ -103,8 +104,8 @@ const HEIGHT = 32;
 var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    width: Dimensions.get('window').width,
     backgroundColor: 'transparent',
-    paddingRight: 10,
     ios: {
       paddingBottom: 6,
       justifyContent: 'center',

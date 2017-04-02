@@ -15,21 +15,23 @@ var StoreView = React.createClass({
   render: function () {
     var store = this.props.store;
     return (
-      <View style={styles.row}>
-        <Image style={styles.picture} source={{ uri: store.image }} />
-        <View style={styles.info}>
-          <Text style={styles.name}>{store.title}</Text>
-          <Text style={styles.title}>{store.hours}</Text>
-          {
-            store.phones.map(phone => <Text style={styles.phone}>{phone}</Text>)
-          }
+      <View>
+        <View style={styles.row}>
+          <Image style={styles.picture} source={{ uri: store.image }} />
+          <View style={styles.info}>
+            <Text style={styles.name}>{store.title}</Text>
+          </View>
         </View>
+        <Text style={styles.title}>{store.hours}</Text>
+        {
+          store.phones.map(phone => <Text style={styles.phone}>{phone}</Text>)
+        }
       </View>
     );
   }
 });
 
-const SIZE = 50;
+const SIZE = 70;
 
 var styles = StyleSheet.create({
   row: {
@@ -40,10 +42,9 @@ var styles = StyleSheet.create({
   picture: {
     width: SIZE,
     height: SIZE,
-    borderRadius: SIZE / 2,
   },
   info: {
-    paddingLeft: 20,
+    paddingLeft: 10,
     flex: 1,
   },
   name: {

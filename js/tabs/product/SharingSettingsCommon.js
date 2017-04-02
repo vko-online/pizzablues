@@ -26,7 +26,7 @@ class SharingSettingsCommon extends React.Component {
       <View style={styles.title}>
         <ProfilePicture userID={user.id} size={24} />
         <Text style={styles.name}>
-          {user.name.split(' ')[0] + "'"}s Schedule
+          История покупок {user.name.split(' ')[0]}
         </Text>
       </View>
     );
@@ -37,11 +37,11 @@ class SharingSettingsCommon extends React.Component {
         </Image>
         <View style={styles.content}>
           <Heading1 style={styles.h1}>
-            Let friends view your schedule in the F8 app?
+            Хотите что бы друзья узнавали ваши покупки?
           </Heading1>
           <Paragraph style={styles.p}>
-            This will not post to Facebook. Only friends using the F8 app will
-            be able to see your schedule in their My F8 tab.
+            Это не будет опубликовано в Facebook. Только ваши друзья использующие
+            это приложение смогут делится историями покупок и рекомендациями
           </Paragraph>
         </View>
       </View>

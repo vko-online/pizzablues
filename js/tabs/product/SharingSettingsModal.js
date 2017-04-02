@@ -33,7 +33,7 @@ class SharingSettingsModal extends React.Component {
           />
           <F8Button
             type="secondary"
-            caption="Not now"
+            caption="Не сейчас"
             onPress={() => this.handleSetSharing(false)}
           />
         </View>

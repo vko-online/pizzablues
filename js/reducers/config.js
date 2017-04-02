@@ -12,6 +12,7 @@ export type Config = {
   appLinkURL: string;
   appInvitePreviewImageURL: string;
   sessionURLTemplate: string;
+  productURLTemplate: string;
 };
 
 const initialState: Config = {
@@ -20,6 +21,7 @@ const initialState: Config = {
   appLinkURL: 'https://www.fbf8.com/',
   appInvitePreviewImageURL: '',
   sessionURLTemplate: 'https://www.fbf8.com/schedule/session/{slug}',
+  productURLTemplate: 'https://www.mysite.com/products/{productId}',
 };
 
 function config(state: Config = initialState, action: Action): Config {
@@ -32,6 +34,8 @@ function config(state: Config = initialState, action: Action): Config {
         state.appInvitePreviewImageURL,
       sessionURLTemplate: action.config.get('sessionURLTemplate') ||
         state.sessionURLTemplate,
+      productURLTemplate: action.config.get('productURLTemplate') ||
+        state.productURLTemplate,
     };
   }
 

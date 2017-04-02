@@ -18,9 +18,11 @@ module.exports = combineReducers({
   filter: require('./filter'),
   navigation: require('./navigation'),
   friendsSchedules: require('./friendsSchedules'),
+  friendsBaskets: require('./friendsBaskets'),
   surveys: require('./surveys'),
   pages: require('./pages'),
   faqs: require('./faqs'),
   stores: require('./stores'),
   products: require('./products'),
+  basket: require('./basket'),
 });

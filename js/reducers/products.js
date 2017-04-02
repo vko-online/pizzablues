@@ -32,6 +32,7 @@ function fromParseProducts(product: Object): Product {
     store: {
       id: product.get('store') ? product.get('store').id : '',
       title: product.get('store') ? product.get('store').get('title') : '',
+      shortTitle: product.get('store') ? product.get('store').get('title').substring(product.get('store').get('title').indexOf('«') + 1, product.get('store').get('title').indexOf('»')) : '',
       hours: product.get('store') ? product.get('store').get('hours') : '',
       image: product.get('store') ? product.get('store').get('image') : '',
       phones: product.get('store') ? product.get('store').get('phones') : [],

@@ -39,24 +39,24 @@ class SharingSettingsScreen extends React.Component {
         <SharingSettingsCommon />
         <View style={styles.switchWrapper}>
           <Text style={styles.option}>
-            NO
+            НЕТ
           </Text>
           <Switch
-            accessibilityLabel="Let friends view your schedule"
+            accessibilityLabel="Делитесь историей покупок и рекомендациями"
             style={styles.switch}
             value={!!this.props.sharedSchedule}
             onValueChange={(enabled) => this.props.dispatch(setSharingEnabled(enabled))}
             onTintColor="#00E3AD"
           />
           <Text style={styles.option}>
-            YES
+            ДА
           </Text>
         </View>
         {/*<FriendsUsingApp />*/}
         <F8Header
           style={styles.header}
           foreground="dark"
-          title="Settings"
+          title="Настройки"
           leftItem={{
             icon: require('../../common/img/back.png'),
             title: 'Back',
@@ -65,7 +65,7 @@ class SharingSettingsScreen extends React.Component {
           }}
           rightItem={{
             icon: require('./img/logout.png'),
-            title: 'Logout',
+            title: 'Выйти',
             onPress: () => this.props.dispatch(logOutWithPrompt()),
           }}
         />

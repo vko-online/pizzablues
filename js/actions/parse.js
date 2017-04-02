@@ -22,9 +22,6 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
   return (dispatch) => {
     return query.find({
       success: (list) => {
-        if (type === 'LOADED_STORES') {
-          console.log(list);
-        }
         // We don't want data loading to interfere with smooth animations
         InteractionManager.runAfterInteractions(() => {
           // Flow can't guarantee {type, list} is a valid action

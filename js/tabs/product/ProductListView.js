@@ -16,7 +16,7 @@ import type {ProductsListData } from './groupProducts';
 
 type Props = {
   products: Array<Product>;
-  storeId: string;
+  storeId?: string;
   navigator: Navigator;
   renderEmptyList?: () => ReactElement;
 };
@@ -74,13 +74,14 @@ renderRow(product: Product) {
     <F8ProductCell
       onPress={() => this.openProduct(product)}
       product={product}
+      features={product.otherPrice ? ['новинка'] : null}
     />
   );
 }
 
-renderEmptyList(decision:string): ?ReactElement {
+renderEmptyList(): ?ReactElement {
   const { renderEmptyList } = this.props;
-  return renderEmptyList && renderEmptyList(decision);
+  return renderEmptyList && renderEmptyList();
 }
 
 openProduct(product: Product) {

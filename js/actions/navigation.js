@@ -6,7 +6,7 @@
 
 import type { Action} from './types';
 
-type Tab = 'schedule' | 'my-schedule' | 'map' | 'notifications' | 'info';
+type Tab = 'product' | 'my-basket' | 'map' | 'notifications' | 'info';
 
 module.exports = {
   switchTab: (tab: Tab): Action => ({

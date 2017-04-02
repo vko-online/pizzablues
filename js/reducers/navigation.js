@@ -8,6 +8,7 @@ import type {Action } from '../actions/types';
 
 export type Tab =
   'product'
+  | 'my-basket'
   | 'map'
   | 'notifications'
   | 'info'

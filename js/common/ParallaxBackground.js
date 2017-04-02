@@ -102,7 +102,7 @@ class ParallaxBackground extends React.Component {
       outputRange: [2, initialScale],
       extrapolateRight: 'clamp',
     });
-    const transforms = { transform: [{translateX}, {translateY}, {scale}] };
+    const transforms = { transform: [{translateX}, {translateY}, {scale}], backgroundColor: '#eee' };
     return (
       <Animated.Image
         source={backgroundImage}

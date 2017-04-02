@@ -28,7 +28,7 @@ Parse.Cloud.define('friends', function(request, response) {
 
       return query.find().then(
         function(users) {
-          return Parse.Promise.when(users.map(fetchSchedule));
+          return Parse.Promise.when(users.map(fetchBasket));
         }
       ).then(
         function(/* ...friends */) {
@@ -50,21 +50,41 @@ Parse.Cloud.define('friends', function(request, response) {
   );
 });
 
-function fetchSchedule(user) {
-  if (!user.get('sharedSchedule')) {
+// function fetchSchedule(user) {
+//   if (!user.get('sharedSchedule')) {
+//     return Parse.Promise.as(null);
+//   }
+//   // https://www.parse.com/questions/can-i-use-include-in-a-query-to-include-all-members-of-a-parserelation-error-102
+//   return user.relation('mySchedule').query().find().then(
+//     function(sessions) {
+//       var schedule = {};
+//       sessions.forEach(function(session) {
+//         schedule[session.id] = true;
+//       });
+//       return {
+//         id: user.get('facebook_id'),
+//         name: user.get('name'),
+//         schedule: schedule,
+//       };
+//     }
+//   );
+// }
+
+function fetchBasket(user) {
+  if (!user.get('sharedBasket')) {
     return Parse.Promise.as(null);
   }
   // https://www.parse.com/questions/can-i-use-include-in-a-query-to-include-all-members-of-a-parserelation-error-102
-  return user.relation('mySchedule').query().find().then(
-    function(sessions) {
-      var schedule = {};
-      sessions.forEach(function(session) {
-        schedule[session.id] = true;
+  return user.relation('myBasket').query().find().then(
+    function(products) {
+      var basket = {};
+      products.forEach(function(product) {
+        basket[product.id] = true;
       });
       return {
         id: user.get('facebook_id'),
         name: user.get('name'),
-        schedule: schedule,
+        basket: basket,
       };
     }
   );

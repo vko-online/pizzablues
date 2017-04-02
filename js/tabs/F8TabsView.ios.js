@@ -10,7 +10,7 @@ var F8InfoView = require('F8InfoView');
 var F8NotificationsView = require('F8NotificationsView');
 // var GeneralScheduleView = require('./schedule/GeneralScheduleView');
 var GeneralProductView = require('./product/GeneralProductView');
-// var MyScheduleView = require('./schedule/MyScheduleView');
+var MyBasketView = require('./product/MyBasketView');
 var React = require('React');
 var TabBarIOS = require('TabBarIOS');
 var TabBarItemIOS = require('TabBarItemIOS');
@@ -58,18 +58,18 @@ class F8TabsView extends React.Component {
             navigator={this.props.navigator}
           />
         </TabBarItemIOS>*/}
-        {/*<TabBarItemIOS
+        <TabBarItemIOS
           title="Корзина"
-          selected={this.props.tab === 'my-schedule'}
-          onPress={this.onTabSelect.bind(this, 'my-schedule')}
+          selected={this.props.tab === 'my-basket'}
+          onPress={this.onTabSelect.bind(this, 'my-basket')}
           icon={require('./schedule/img/my-schedule-icon.png')}
           selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}>
-          <MyScheduleView
+          <MyBasketView
             navigator={this.props.navigator}
-            onJumpToSchedule={() => this.props.onTabSelect('schedule')}
+            onJumpToSchedule={() => this.props.onTabSelect('my-basket')}
           />
-        </TabBarItemIOS>*/}
-        <TabBarItemIOS
+        </TabBarItemIOS>
+        {/*<TabBarItemIOS
           title="Акции"
           selected={this.props.tab === 'notifications'}
           onPress={this.onTabSelect.bind(this, 'notifications')}
@@ -85,7 +85,7 @@ class F8TabsView extends React.Component {
           icon={require('./info/img/info-icon.png')}
           selectedIcon={require('./info/img/info-icon-active.png')}>
           <F8InfoView navigator={this.props.navigator} />
-        </TabBarItemIOS>
+        </TabBarItemIOS>*/}
       </TabBarIOS>
     );
   }

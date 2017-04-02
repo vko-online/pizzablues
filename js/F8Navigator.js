@@ -9,15 +9,15 @@ var React = require('React');
 var Platform = require('Platform');
 var BackAndroid = require('BackAndroid');
 var F8TabsView = require('F8TabsView');
-var FriendsScheduleView = require('./tabs/schedule/FriendsScheduleView');
+var FriendsBasketView = require('./tabs/product/FriendsBasketView');
 var FilterScreen = require('./filter/FilterScreen');
-var CreateScreen = require('./create/CreateScreen');
+// var CreateScreen = require('./create/CreateScreen');
 var LoginModal = require('./login/LoginModal');
 var Navigator = require('Navigator');
-var SessionsCarousel = require('./tabs/schedule/SessionsCarousel');
+// var SessionsCarousel = require('./tabs/schedule/SessionsCarousel');
 var ProductsCarousel = require('./tabs/product/ProductsCarousel');
-var SharingSettingsModal = require('./tabs/schedule/SharingSettingsModal');
-var SharingSettingsScreen = require('./tabs/schedule/SharingSettingsScreen');
+var SharingSettingsModal = require('./tabs/product/SharingSettingsModal');
+var SharingSettingsScreen = require('./tabs/product/SharingSettingsScreen');
 var ThirdPartyNotices = require('./tabs/info/ThirdPartyNotices');
 var RatingScreen = require('./rating/RatingScreen');
 var StyleSheet = require('StyleSheet');
@@ -63,8 +63,8 @@ var F8Navigator = React.createClass({
       return true;
     }
 
-    if (this.props.tab !== 'schedule') {
-      this.props.dispatch(switchTab('schedule'));
+    if (this.props.tab !== 'product') {
+      this.props.dispatch(switchTab('product'));
       return true;
     }
     return false;
@@ -93,22 +93,6 @@ var F8Navigator = React.createClass({
   },
 
   renderScene: function(route, navigator) {
-    if (route.allSessions) {
-      return (
-        <SessionsCarousel
-          {...route}
-          navigator={navigator}
-        />
-      );
-    }
-    if (route.session) {
-      return (
-        <SessionsCarousel
-          session={route.session}
-          navigator={navigator}
-        />
-      );
-    }
     if (route.allProducts) {
       return (
         <ProductsCarousel
@@ -130,14 +114,9 @@ var F8Navigator = React.createClass({
         <FilterScreen navigator={navigator} />
       );
     }
-    if (route.create) {
-      return (
-        <CreateScreen navigator={navigator} />
-      );
-    }
     if (route.friend) {
       return (
-        <FriendsScheduleView
+        <FriendsBasketView
           friend={route.friend}
           navigator={navigator}
         />

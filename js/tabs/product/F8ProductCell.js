@@ -21,7 +21,7 @@ class F8ProductCell extends React.Component {
   props: {
     product: Product;
     showTick: boolean;
-    showStartEndTime: boolean;
+    features?: Array<string>;
     onPress: ?() => void;
     style: any;
   };
@@ -32,6 +32,13 @@ class F8ProductCell extends React.Component {
     if (this.props.showTick) {
       tick =
         <Image style={styles.added} source={require('./img/added-cell.png')} />;
+    }
+
+    var features;
+    if (this.props.features && this.props.features.length) {
+      features = (<View style={styles.marker}>
+        {this.props.features.map(feat => <Text style={styles.markerText}>{feat}</Text>)}
+      </View>);
     }
     // var time;
     // if (this.props.showStartEndTime) {
@@ -59,6 +66,7 @@ class F8ProductCell extends React.Component {
           </Text>
         </View>
         {tick}
+        {features}
       </View>;
 
     if (this.props.onPress) {
@@ -119,11 +127,23 @@ var styles = StyleSheet.create({
   lane: {
     width: Dimensions.get('window').width - 70,
   },
+  marker: {
+    backgroundColor: '#F4F6F7',
+    borderRadius: 10,
+    position: 'absolute',
+    right: 6,
+    bottom: 4,
+  },
+  markerText: {
+    padding: 4,
+    color: F8Colors.lightText,
+    fontSize: 12,
+  }
 });
 
 function select(store, props) {
   return {
-    showTick: !!store.schedule[props.product.id],
+    showTick: !!store.basket[props.product.id],
   };
 }
 

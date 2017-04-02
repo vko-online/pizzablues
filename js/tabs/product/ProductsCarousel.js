@@ -4,7 +4,7 @@
 'use strict';
 
 const Parse = require('parse/react-native');
-const {AppEventsLogger} = require('react-native-fbsdk');
+const { AppEventsLogger } = require('react-native-fbsdk');
 const React = require('react');
 const F8ProductDetails = require('F8ProductDetails');
 const F8PageControl = require('F8PageControl');
@@ -13,10 +13,10 @@ const StyleSheet = require('F8StyleSheet');
 const Platform = require('Platform');
 const Carousel = require('../../common/Carousel');
 
-const {connect} = require('react-redux');
-const {shareSession} = require('../../actions');
+const { connect } = require('react-redux');
+const { shareProduct, loadFriendsBaskets } = require('../../actions');
 
-import type {Dispatch} from '../../actions/types';
+import type {Dispatch } from '../../actions/types';
 
 const {
   Text,
@@ -24,7 +24,7 @@ const {
   Navigator,
 } = require('react-native');
 
-import type {Product} from '../../reducers/products';
+import type {Product } from '../../reducers/products';
 
 type Context = {
   rowIndex: number; // TODO: IndexWithinSection
@@ -33,7 +33,7 @@ type Context = {
 };
 
 type Props = {
-  allProducts?: {[sectionID: string]: {[productID: string]: Product}};
+  allProducts?: { [sectionID: string]: { [productID: string]: Product } };
   product: Product;
   navigator: Navigator;
   dispatch: Dispatch;
@@ -56,9 +56,9 @@ class ProductsCarusel extends React.Component {
     var contexts: Array<Context> = [];
     var allProducts = this.props.allProducts;
     if (!allProducts) {
-      const {product} = this.props;
+      const { product } = this.props;
       allProducts = {
-        [product.category]: {[product.id]: product}
+        [product.category]: { [product.id]: product }
       };
     }
 
@@ -80,8 +80,8 @@ class ProductsCarusel extends React.Component {
 
     const selectedIndex = flatProductsList.findIndex((s) => s.id === this.props.product.id);
     if (selectedIndex === -1) {
-      console.log(this.props.product);
-      console.log(flatProductsList);
+      // console.log(this.props.product);
+      // console.log(flatProductsList);
     }
 
     this.state = {
@@ -94,15 +94,15 @@ class ProductsCarusel extends React.Component {
     (this: any).dismiss = this.dismiss.bind(this);
     (this: any).handleIndexChange = this.handleIndexChange.bind(this);
     (this: any).renderCard = this.renderCard.bind(this);
-    (this: any).shareCurrentSession = this.shareCurrentProduct.bind(this);
+    (this: any).shareCurrentProduct = this.shareCurrentProduct.bind(this);
   }
 
   render() {
-    var {rowIndex, sectionLength, sectionTitle} = this.state.contexts[this.state.selectedIndex];
+    var { rowIndex, sectionLength, sectionTitle } = this.state.contexts[this.state.selectedIndex];
     var rightItem;
     if (Platform.OS === 'android') {
       rightItem = {
-        title: 'Share',
+        title: 'Поделиться',
         icon: require('./img/share.png'),
         onPress: this.shareCurrentProduct,
       };
@@ -113,7 +113,7 @@ class ProductsCarusel extends React.Component {
           style={styles.header}
           leftItem={{
             layout: 'icon',
-            title: 'Close',
+            title: 'Закрыть',
             icon: require('../../common/BackButtonIcon'),
             onPress: this.dismiss,
           }}
@@ -152,12 +152,12 @@ class ProductsCarusel extends React.Component {
 
   shareCurrentProduct() {
     const product = this.state.flatProductsList[this.state.selectedIndex];
-    this.props.dispatch(shareSession(product));
+    this.props.dispatch(shareProduct(product));
   }
 
   componentDidMount() {
     this.track(this.state.selectedIndex);
-    // this.props.dispatch(loadFriendsSchedules());
+    this.props.dispatch(loadFriendsBaskets());
   }
 
   dismiss() {
@@ -170,9 +170,9 @@ class ProductsCarusel extends React.Component {
   }
 
   track(index: number) {
-    const {id} = this.state.flatProductsList[index];
-    Parse.Analytics.track('view', {id});
-    AppEventsLogger.logEvent('View Product', 1, {id});
+    const { id } = this.state.flatProductsList[index];
+    Parse.Analytics.track('view', { id });
+    AppEventsLogger.logEvent('View Product', 1, { id });
   }
 }
 

@@ -19,8 +19,17 @@ var Dimensions = require('Dimensions');
 var { Text } = require('F8Text');
 var TouchableOpacity = require('TouchableOpacity');
 var View = require('View');
-
+var AddToBasketButton = require('./AddToBasketButton');
+var ImageModalView = require('../../common/ImageModalView');
 var { connect } = require('react-redux');
+var WIDTH = Dimensions.get('window').width;
+var HEIGHT = Dimensions.get('window').height;
+import ImageZoom from 'react-native-image-pan-zoom';
+
+var {
+  addToBasket,
+  removeFromBasketWithPrompt,
+} = require('../../actions');
 
 var F8ProductDetails = React.createClass({
   mixins: [Subscribable.Mixin],
@@ -31,7 +40,40 @@ var F8ProductDetails = React.createClass({
     };
   },
 
+  toggleAdded: function (value) {
+    if (!this.props.isAddedToBasket) {
+      this.addToBasket();
+    } else {
+      this.props.removeFromBasketWithPrompt();
+    }
+  },
+  addToBasket: function () {
+    if (!this.props.isLoggedIn) {
+      this.props.navigator.push({
+        login: true,
+        callback: () => this.addToBasket(),
+      });
+    } else {
+      this.props.addToBasket();
+      if (this.props.sharedBasket === null) {
+        setTimeout(() => this.props.navigator.push({ share: true }), 1000);
+      }
+    }
+  },
+
   render: function () {
+    /*var locationColor = F8Colors.darkText;
+    var locationTitle = this.props.product.title.toUpperCase();;
+    var location = (
+      <Text style={[styles.location, {color: locationColor}]}>
+        {locationTitle}
+        <Text style={styles.time}>
+          {locationTitle && ' - '}
+          {this.props.product.price}
+        </Text>
+      </Text>
+    );*/
+
     var titleHeader = (
       <View>
         <Text style={styles.titlePrice}>
@@ -42,8 +84,32 @@ var F8ProductDetails = React.createClass({
         </Text>
       </View>
     );
+    // var productImage = <Image style={styles.picture} source={{ uri: this.props.product.image }} />;
+    /*var productImage = (
+      <ImageZoom cropWidth={WIDTH}
+        cropHeight={HEIGHT}
+        imageWidth={WIDTH - 76}
+        imageHeight={WIDTH - 76}>
+        <Image style={styles.picture}
+          source={{ uri: this.props.product.image }} />
+      </ImageZoom>
+    );*/
+    /*<Image
+          style={styles.pictureBig}
+          source={{ uri: this.props.product.image }} />*/
 
-    var title = this.props.product.title || '';
+    const modalElementImage = <Image style={styles.picture} source={{ uri: this.props.product.image }} />;
+    var productImage = (
+      <ImageModalView handleStyle={styles.picture} handleElement={modalElementImage}>
+        <ImageZoom cropWidth={WIDTH}
+          cropHeight={HEIGHT}
+          imageWidth={WIDTH}
+          imageHeight={HEIGHT}>
+          <Image style={styles.pictureBig}
+            source={{ uri: this.props.product.image }} />
+        </ImageZoom>
+      </ImageModalView>
+    );
 
     return (
       <View style={[styles.container, this.props.style]}>
@@ -54,10 +120,10 @@ var F8ProductDetails = React.createClass({
           showsVerticalScrollIndicator={false}
           automaticallyAdjustContentInsets={false}>
           <Text style={styles.title}>
-            {title}
+            {this.props.product.title}
           </Text>
           <View style={styles.pictureWrapper}>
-            <Image style={styles.picture} source={{ uri: this.props.product.image }} />
+            {productImage}
           </View>
           <Text style={styles.description}>
             {this.props.product.description}
@@ -67,12 +133,18 @@ var F8ProductDetails = React.createClass({
           </Section>
           <StoreView store={this.props.product.store} />
           <TouchableOpacity
-            accessibilityLabel="Share this product"
+            accessibilityLabel="Поделится продуктом"
             accessibilityTraits="button"
             onPress={this.props.onShare}
             style={styles.shareButton}>
             <Image source={require('./img/share.png')} />
           </TouchableOpacity>
+
+          <Section>
+            <AddToBasketButton
+              isAdded={this.props.isAddedToBasket}
+              onPress={this.toggleAdded} />
+          </Section>
         </ScrollView>
         <Animated.View style={[
           styles.miniHeader,
@@ -85,9 +157,12 @@ var F8ProductDetails = React.createClass({
           }
         ]}>
           <Text numberOfLines={1} style={styles.miniTitle}>
-            {title}
+            {this.props.product.title}
+            <Text style={styles.time}>
+              {this.props.product.title && ' - '}
+              {this.props.product.price}
+            </Text>
           </Text>
-          {titleHeader}
         </Animated.View>
       </View>
     );
@@ -130,7 +205,6 @@ class Section extends React.Component {
 }
 
 var PADDING = 15;
-var WIDTH = Dimensions.get('window').width;
 
 var styles = StyleSheet.create({
   container: {
@@ -149,6 +223,10 @@ var styles = StyleSheet.create({
     width: WIDTH - 76,
     height: WIDTH - 76,
     borderRadius: 10,
+  },
+  pictureBig: {
+    width: WIDTH,
+    height: WIDTH,
   },
   miniHeader: {
     backgroundColor: 'white',
@@ -173,10 +251,6 @@ var styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    letterSpacing: -1,
-    lineHeight: 32,
-    marginVertical: 20,
   },
   time: {
     color: F8Colors.lightText,
@@ -230,18 +304,25 @@ var styles = StyleSheet.create({
 
 function select(store, props) {
   const productID = props.product.id;
-  const friendsGoing = store.friendsSchedules.filter((friend) => friend.schedule[productID]);
-  const map = store.maps.find(({ name }) => name === props.product.location);
+  const friendsGoing = store.friendsBaskets.filter((friend) => friend.basket[productID]);
 
   return {
-    isAddedToSchedule: store.schedule[props.product.id],
+    isAddedToBasket: !!store.basket[props.product.id],
     isLoggedIn: store.user.isLoggedIn,
-    sharedSchedule: store.user.sharedSchedule,
+    sharedBasket: store.user.sharedBasket,
     productURLTemplate: store.config.productURLTemplate,
-    topics: store.topics,
+    categories: store.categories,
     friendsGoing,
-    map,
   };
 }
 
-module.exports = connect(select)(F8ProductDetails);
+function actions(dispatch, props) {
+  let id = props.product.id;
+  return {
+    addToBasket: (value) => dispatch(addToBasket(id)),
+    removeFromBasketWithPrompt:
+    () => dispatch(removeFromBasketWithPrompt(props.product)),
+  };
+}
+
+module.exports = connect(select, actions)(F8ProductDetails);
