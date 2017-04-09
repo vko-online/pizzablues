@@ -119,7 +119,7 @@ var styles = StyleSheet.create({
     borderColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent', // 'rgba(57,57,57,0.3)',//
     ios: {
       height: HEIGHT,
       paddingHorizontal: 20,

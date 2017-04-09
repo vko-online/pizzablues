@@ -12,7 +12,7 @@ var Navigator = require('Navigator');
 var ProfilePicture = require('../../common/ProfilePicture');
 var React = require('React');
 var PureListView = require('../../common/PureListView');
-var ProductListView = require('./ProductListView');
+var BasketListView = require('./BasketListView');
 var FriendsListView = require('./FriendsListView');
 
 var { connect } = require('react-redux');
@@ -20,8 +20,6 @@ var { connect } = require('react-redux');
 var {
   logOutWithPrompt,
   switchTab,
-  // switchDecision,
-  // loadFriendsSchedules,
   loadFriendsBaskets
 } = require('../../actions');
 
@@ -66,7 +64,7 @@ class MyBasketView extends React.Component {
       };
     }
 
-    const {id, isLoggedIn} = this.props.user;
+    const { id, isLoggedIn } = this.props.user;
     const profilePicture = isLoggedIn && id
       ? <ProfilePicture userID={id} size={100} />
       : null;
@@ -89,24 +87,24 @@ class MyBasketView extends React.Component {
       return (
         <PureListView
           renderEmptyList={this.renderNotLoggedIn}
-          />
+        />
       );
     }
 
     return [
-      <ProductListView
+      <BasketListView
         title="В корзине"
         key="inBasket"
         products={this.props.basketProducts}
         renderEmptyList={this.renderEmptyProductsList}
         navigator={this.props.navigator}
-        />,
+      />,
       <FriendsListView
         title="Корзина друзей"
         key="friendsBasket"
         friends={this.props.friends}
         navigator={this.props.navigator}
-        />,
+      />,
     ];
   }
 
@@ -130,7 +128,7 @@ class MyBasketView extends React.Component {
         <F8Button
           caption={'Добавьте товары'}
           onPress={() => this.props.jumpToProducts()}
-          />
+        />
       </EmptyProduct>
     );
   }

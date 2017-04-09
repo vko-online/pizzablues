@@ -41,7 +41,7 @@
     ip = @"127.0.0.1";
   }
 
-  jsCodeLocation = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=true", ip]];
+  jsCodeLocation = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=false", ip]];
 #else
   jsCodeLocation = [CodePush bundleURL];
 #endif

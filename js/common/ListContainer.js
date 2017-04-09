@@ -41,7 +41,7 @@ type State = {
   stickyHeaderHeight: number;
 };
 
-const EMPTY_CELL_HEIGHT = Dimensions.get('window').height > 600 ? 200 : 150;
+const EMPTY_CELL_HEIGHT = Dimensions.get('window').height > 600 ? 200 : 135;
 
 var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
 var ProgressBarAndroid = require('ProgressBarAndroid');

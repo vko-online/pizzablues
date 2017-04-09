@@ -27,7 +27,7 @@ export type Action =
   | { type: 'FORM_INPUT', value: { sessionTitle: string; sessionDescription: string; sessionPrivate: boolean; startTime: Date; sessionPrice: string; pricePerUser: boolean; } }
   | { type: 'SESSION_ADDED', id: string, value: any }
   | { type: 'SESSION_REMOVED', id: string }
-  | { type: 'PRODUCT_ADDED', id: string}
+  | { type: 'PRODUCT_ADDED', id: string }
   | { type: 'PRODUCT_REMOVED', id: string }
   | { type: 'SET_SHARING', enabled: boolean }
   | { type: 'APPLY_TOPICS_FILTER', topics: { [key: string]: boolean } }
@@ -40,6 +40,8 @@ export type Action =
   | { type: 'REGISTERED_PUSH_NOTIFICATIONS' }
   | { type: 'SKIPPED_PUSH_NOTIFICATIONS' }
   | { type: 'RECEIVED_PUSH_NOTIFICATION', notification: Object }
+  | { type: 'SHIPPING_ADDED', shipping: { firstName: string; lastName: string; phone: string; address: string; } }
+  | { type: 'PAYMENT_ADDED', payment: string }
   | { type: 'SEEN_ALL_NOTIFICATIONS' }
   | { type: 'RESET_NUXES' }
   ;

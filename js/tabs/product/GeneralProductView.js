@@ -76,7 +76,7 @@ class GeneralProductView extends React.Component {
       <ListContainer
         selectedSegment={selectedIndex}
         onSegmentChange={this.switchStore}
-        backgroundImage={require('./img/product-background2.jpg')}
+        backgroundImage={require('./img/product-background3.jpg')}
         backgroundColor="#be2026"
         selectedSectionColor="#51CDDA"
         stickyHeader={filterHeader}

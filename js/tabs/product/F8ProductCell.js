@@ -21,6 +21,7 @@ class F8ProductCell extends React.Component {
   props: {
     product: Product;
     showTick: boolean;
+    forceTickHide?: boolean;
     features?: Array<string>;
     onPress: ?() => void;
     style: any;
@@ -29,7 +30,7 @@ class F8ProductCell extends React.Component {
   render() {
     var product = this.props.product;
     var tick;
-    if (this.props.showTick) {
+    if (!this.props.forceTickHide && this.props.showTick) {
       tick =
         <Image style={styles.added} source={require('./img/added-cell.png')} />;
     }

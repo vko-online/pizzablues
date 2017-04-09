@@ -30,6 +30,7 @@ var {
   addToBasket,
   removeFromBasketWithPrompt,
 } = require('../../actions');
+console.log('WIDTH', WIDTH);
 
 var F8ProductDetails = React.createClass({
   mixins: [Subscribable.Mixin],

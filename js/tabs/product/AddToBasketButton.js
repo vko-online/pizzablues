@@ -151,6 +151,7 @@ var styles = StyleSheet.create({
     borderRadius: HEIGHT / 2,
     backgroundColor: 'transparent',
     paddingHorizontal: 40,
+    marginHorizontal: 40,
   },
   content: {
     position: 'absolute',
