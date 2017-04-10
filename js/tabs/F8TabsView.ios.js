@@ -6,9 +6,8 @@
 'use strict';
 
 var F8Colors = require('F8Colors');
-var F8InfoView = require('F8InfoView');
-var F8NotificationsView = require('F8NotificationsView');
-// var GeneralScheduleView = require('./schedule/GeneralScheduleView');
+// var F8InfoView = require('F8InfoView');
+// var F8NotificationsView = require('F8NotificationsView');
 var GeneralProductView = require('./product/GeneralProductView');
 var MyBasketView = require('./product/MyBasketView');
 var React = require('React');
@@ -42,31 +41,21 @@ class F8TabsView extends React.Component {
           title="Меню"
           selected={this.props.tab === 'product'}
           onPress={this.onTabSelect.bind(this, 'product')}
-          icon={require('./schedule/img/schedule-icon-1.png')}
-          selectedIcon={require('./schedule/img/schedule-icon-1-active.png')}>
+          icon={require('./product/img/schedule-icon-1.png')}
+          selectedIcon={require('./product/img/schedule-icon-1-active.png')}>
           <GeneralProductView
             navigator={this.props.navigator}
           />
         </TabBarItemIOS>
-        {/*<TabBarItemIOS
-          title="Меню"
-          selected={this.props.tab === 'schedule'}
-          onPress={this.onTabSelect.bind(this, 'schedule')}
-          icon={require('./schedule/img/schedule-icon-1.png')}
-          selectedIcon={require('./schedule/img/schedule-icon-1-active.png')}>
-          <GeneralScheduleView
-            navigator={this.props.navigator}
-          />
-        </TabBarItemIOS>*/}
         <TabBarItemIOS
           title="Корзина"
           selected={this.props.tab === 'my-basket'}
           onPress={this.onTabSelect.bind(this, 'my-basket')}
-          icon={require('./schedule/img/my-schedule-icon.png')}
-          selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}>
+          icon={require('./product/img/my-schedule-icon.png')}
+          selectedIcon={require('./product/img/my-schedule-icon-active.png')}>
           <MyBasketView
             navigator={this.props.navigator}
-            onJumpToSchedule={() => this.props.onTabSelect('my-basket')}
+            onJumpToProduct={() => this.props.onTabSelect('product')}
           />
         </TabBarItemIOS>
         {/*<TabBarItemIOS

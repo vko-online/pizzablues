@@ -9,7 +9,7 @@ import type {Action} from '../actions/types';
 export type FriendFilter = {
   id: string;
   name: string;
-  schedule: {[key: string]: boolean};
+  basket: {[key: string]: boolean};
 };
 
 export type TopicsFilter = {

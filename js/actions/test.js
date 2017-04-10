@@ -19,8 +19,8 @@ function testLinkPush(): ThunkAction {
   return () => Parse.Cloud.run('test_push', {url: 'link'});
 }
 
-function testSessionPush(): ThunkAction {
-  return () => Parse.Cloud.run('test_push', {url: 'session'});
+function testProductPush(): ThunkAction {
+  return () => Parse.Cloud.run('test_push', {url: 'product'});
 }
 
 function testSurveyPush(): ThunkAction {
@@ -56,7 +56,7 @@ function testExportAppState(): ThunkAction {
 const TEST_MENU = {
   'Request a push notification': testPlainPush,
   'Push with link': testLinkPush,
-  'Push with session': testSessionPush,
+  'Push with product': testProductPush,
   'Request a survey': testSurveyPush,
   'Reset NUXes': testResetNuxes,
   'Get app state': testExportAppState,

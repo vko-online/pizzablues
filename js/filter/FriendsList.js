@@ -29,7 +29,7 @@ class FriendsList extends React.Component {
       return (
         <View style={[styles.container, styles.noFriends]}>
           <Text style={styles.text}>
-            No friends have shared their schedule.
+            No friends have shared their baskets.
           </Text>
         </View>
       );

@@ -8,13 +8,10 @@ type State = Array<string>;
 type Action = { type: string; list: Array<any>; };
 
 function topics(state: State = [], action: Action): State {
-  if (action.type === 'LOADED_SESSIONS') {
+  if (action.type === 'LOADED_PRODUCTS') {
     var topicsMap = Object.create(null);
-    action.list.forEach((session) => {
-      var tags = session.get('tags') || [];
-      tags.forEach((tag) => {
-        topicsMap[tag] = true;
-      });
+    action.list.forEach((product) => {
+      topicsMap[product.get('category')] = true;
     });
     return Object.keys(topicsMap).sort();
   }

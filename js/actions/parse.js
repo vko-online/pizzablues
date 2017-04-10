@@ -34,13 +34,6 @@ function loadParseQuery(type: string, query: Parse.Query): ThunkAction {
 }
 
 module.exports = {
-  loadSessions: (): ThunkAction =>
-    loadParseQuery(
-      'LOADED_SESSIONS',
-      new Parse.Query('Agenda')
-        .include('speakers')
-        .ascending('startTime')
-    ),
   loadFaqs: (): ThunkAction =>
     loadParseQuery('LOADED_FAQS', new Parse.Query(FAQ)),
   loadPages: (): ThunkAction =>

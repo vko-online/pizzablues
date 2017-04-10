@@ -10,30 +10,23 @@ export type Action =
   { type: 'LOADED_ABOUT', list: Array<ParseObject> }
   | { type: 'LOADED_NOTIFICATIONS', list: Array<ParseObject> }
   | { type: 'LOADED_MAPS', list: Array<ParseObject> }
-  | { type: 'LOADED_FRIENDS_SCHEDULES', list: Array<{ id: string; name: string; schedule: { [key: string]: boolean }; }> }
   | { type: 'LOADED_FRIENDS_BASKETS', list: Array<{ id: string; name: string; basket: { [key: string]: boolean }; }> }
   | { type: 'LOADED_CONFIG', config: ParseObject }
   | { type: 'LOADED_PAGES', list: Array<ParseObject> }
   | { type: 'LOADED_FAQS', list: Array<ParseObject> }
-  | { type: 'LOADED_SESSIONS', list: Array<ParseObject> }
   | { type: 'LOADED_SURVEYS', list: Array<Object> }
   | { type: 'SUBMITTED_SURVEY_ANSWERS', id: string; }
-  | { type: 'LOGGED_IN', source: ?string; data: { id: string; name: string; sharedSchedule: ?boolean; } }
-  | { type: 'RESTORED_SCHEDULE', list: Array<ParseObject> }
+  | { type: 'LOGGED_IN', source: ?string; data: { id: string; name: string; sharedBasket: ?boolean; } }
   | { type: 'RESTORED_BASKET', list: Array<ParseObject> }
   | { type: 'SKIPPED_LOGIN' }
   | { type: 'LOGGED_OUT' }
   | { type: 'FORM_SUBMITTED' }
-  | { type: 'FORM_INPUT', value: { sessionTitle: string; sessionDescription: string; sessionPrivate: boolean; startTime: Date; sessionPrice: string; pricePerUser: boolean; } }
-  | { type: 'SESSION_ADDED', id: string, value: any }
-  | { type: 'SESSION_REMOVED', id: string }
   | { type: 'PRODUCT_ADDED', id: string }
   | { type: 'PRODUCT_REMOVED', id: string }
   | { type: 'SET_SHARING', enabled: boolean }
   | { type: 'APPLY_TOPICS_FILTER', topics: { [key: string]: boolean } }
   | { type: 'APPLY_CATEGORIES_FILTER', categories: { [key: string]: boolean } }
   | { type: 'CLEAR_FILTER' }
-  | { type: 'SWITCH_DECISION', decision: 'going' | 'maybe' }
   | { type: 'SWITCH_STORE', storeId: string }
   | { type: 'SWITCH_TAB', tab: 'product' | 'my-basket' | 'map' | 'notifications' | 'info' }
   | { type: 'TURNED_ON_PUSH_NOTIFICATIONS' }

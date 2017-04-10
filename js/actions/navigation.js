@@ -17,8 +17,4 @@ module.exports = {
     type: 'SWITCH_STORE',
     storeId,
   }),
-  switchDecision: (decision: 'going' | 'maybe'): Action => ({
-    type: 'SWITCH_DECISION',
-    decision,
-  }),
 };

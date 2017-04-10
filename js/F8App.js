@@ -18,8 +18,7 @@ var {
   loadConfig,
   loadMaps,
   loadNotifications,
-  loadSessions,
-  loadFriendsSchedules,
+  loadFriendsBaskets,
   loadSurveys,
   loadPages,
   loadFaqs,
@@ -39,8 +38,7 @@ var F8App = React.createClass({
     this.props.dispatch(loadNotifications());
     this.props.dispatch(loadMaps());
     this.props.dispatch(loadConfig());
-    this.props.dispatch(loadSessions());
-    this.props.dispatch(loadFriendsSchedules());
+    this.props.dispatch(loadFriendsBaskets());
     this.props.dispatch(loadSurveys());
     this.props.dispatch(loadPages());
     this.props.dispatch(loadFaqs());
@@ -57,7 +55,7 @@ var F8App = React.createClass({
 
   handleAppStateChange: function (appState) {
     if (appState === 'active') {
-      this.props.dispatch(loadSessions());
+      this.props.dispatch(loadProducts());
       this.props.dispatch(loadNotifications());
       this.props.dispatch(loadSurveys());
       CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });

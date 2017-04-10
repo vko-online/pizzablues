@@ -7,21 +7,22 @@
 var F8Colors = require('F8Colors');
 var React = require('React');
 var View = require('View');
-var { Text } = require('F8Text');
+var {Text} = require('F8Text');
 var F8Touchable = require('F8Touchable');
 var Image = require('Image');
 var StyleSheet = require('StyleSheet');
 
+type Prop = {
+  icon: number,
+  selectedIcon: number,
+  selected: boolean,
+  title: string,
+  badge: ?string,
+  onPress: () => void,
+};
 
 class MenuItem extends React.Component {
-  props: {
-    icon: number;
-    selectedIcon: number;
-    selected: boolean;
-    title: string;
-    badge: ?string;
-    onPress: () => void;
-  };
+  props: Prop;
 
   render() {
     var icon = this.props.selected ? this.props.selectedIcon : this.props.icon;

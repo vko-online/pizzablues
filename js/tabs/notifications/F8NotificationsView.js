@@ -4,7 +4,7 @@
  */
 'use strict';
 
-var EmptySchedule = require('../schedule/EmptySchedule');
+var EmptyProduct = require('../product/EmptyProduct');
 var Linking = require('Linking');
 var PushNUXModal = require('./PushNUXModal');
 var PureListView = require('../../common/PureListView');
@@ -13,10 +13,10 @@ var Platform = require('Platform');
 var ActionSheetIOS = require('ActionSheetIOS');
 var ListContainer = require('ListContainer');
 var NotificationCell = require('./NotificationCell');
-var RateSessionsCell = require('./RateSessionsCell');
+var RateProductsCell = require('./RateProductsCell');
 var allNotifications = require('./allNotifications');
 var View = require('View');
-var findSessionByURI = require('findSessionByURI');
+var findProductByURI = require('findProductByURI');
 var { connect } = require('react-redux');
 var {
   turnOnPushNotifications,
@@ -83,8 +83,8 @@ class F8NotificationsView extends React.Component {
   renderRow(notification) {
     if (notification.surveysCount) {
       return (
-        <RateSessionsCell
-          numberOfSessions={notification.surveysCount}
+        <RateProductsCell
+          numberOfProducts={notification.surveysCount}
           onPress={this.openReview}
         />
       );
@@ -100,7 +100,7 @@ class F8NotificationsView extends React.Component {
 
   renderEmptyList() {
     return (
-      <EmptySchedule
+      <EmptyProduct
         title="No Notifications Yet"
         text="Important updates and announcements will appear here"
       />
@@ -109,9 +109,9 @@ class F8NotificationsView extends React.Component {
 
   openNotification(notification) {
     if (notification.url) {
-      var session = findSessionByURI(this.props.sessions, notification.url);
-      if (session) {
-        this.props.navigator.push({session});
+      var product = findProductByURI(this.props.products, notification.url);
+      if (product) {
+        this.props.navigator.push({product});
       } else {
         Linking.openURL(notification.url);
       }
@@ -167,12 +167,12 @@ class F8NotificationsView extends React.Component {
   }
 }
 
-function select(state) {
+function select(store) {
   return {
-    nux: state.notifications.enabled === null,
-    notifications: data(state),
-    sessions: state.sessions,
-    surveys: state.surveys,
+    nux: store.notifications.enabled === null,
+    notifications: data(store),
+    products: store.products,
+    surveys: store.surveys,
   };
 }
 

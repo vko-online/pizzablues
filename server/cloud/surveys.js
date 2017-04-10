@@ -2,7 +2,7 @@
 /* global Parse */
 
 var Product = Parse.Object.extend('Product');
-var Attendance = Parse.Object.extend('Attendance');
+var Review = Parse.Object.extend('Review');
 var Survey = Parse.Object.extend('Survey');
 var SurveyResult = Parse.Object.extend('SurveyResult');
 
@@ -19,16 +19,16 @@ Parse.Cloud.define('send_surveys', function(request, response) {
   }
 
   console.log('Fetching attendees for ' + productId);
-  var agenda = new Product({id: productId});
-  var attendees = new Parse.Query(Attendance)
-    .equalTo('product', agenda)
+  var product = new Product({id: productId});
+  var reviewers = new Parse.Query(Review)
+    .equalTo('product', product)
     .notEqualTo('sent', true)
     .find();
   var survey = new Parse.Query(Survey)
-    .equalTo('product', agenda)
+    .equalTo('product', product)
     .first();
 
-  Parse.Promise.when(attendees, survey, new Parse.Query(Product).get(productId))
+  Parse.Promise.when(reviewers, survey, new Parse.Query(Product).get(productId))
     .then(sendSurveys)
     .then(
       function(value) { response.success(value); },
@@ -89,13 +89,13 @@ Parse.Cloud.define('submit_survey', function(request, response) {
     );
 });
 
-function sendSurveys(attendees, survey, product) {
+function sendSurveys(reviewers, survey, product) {
   if (!survey) {
     throw new Error('Survey not found for product ' + product.id);
   }
 
-  console.log('Found ' + attendees.length + ' attendees');
-  return Parse.Promise.when(attendees.map(function(record) {
+  console.log('Found ' + reviewers.length + ' reviewers');
+  return Parse.Promise.when(reviewers.map(function(record) {
     var user = record.get('user');
     return new SurveyResult().save({
       user: user,

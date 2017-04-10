@@ -16,25 +16,24 @@ var View = require('View');
 var StyleSheet = require('StyleSheet');
 var TouchableOpacity = require('TouchableOpacity');
 var Image = require('Image');
-var { Text } = require('F8Text');
+var {Text} = require('F8Text');
 var MenuItem = require('./MenuItem');
 var LoginButton = require('../common/LoginButton');
 var ProfilePicture = require('../common/ProfilePicture');
-var GeneralScheduleView = require('./schedule/GeneralScheduleView');
-var GeneralProductView = require('./schedule/GeneralProductView');
-// var MyScheduleView = require('./schedule/MyScheduleView');
+var GeneralProductView = require('./product/GeneralProductView');
+var MyBasketView = require('./product/MyBasketView');
 var unseenNotificationsCount = require('./notifications/unseenNotificationsCount');
 
-var { switchTab, logOutWithPrompt } = require('../actions');
-var { connect } = require('react-redux');
+var {switchTab, logOutWithPrompt} = require('../actions');
+var {connect} = require('react-redux');
 
 import type {Tab} from '../reducers/navigation';
 
 class F8TabsView extends React.Component {
   props: {
-    tab: Tab;
-    onTabSelect: (tab: Tab) => void;
-    navigator: Navigator;
+    tab: Tab,
+    onTabSelect: (tab: Tab) => void,
+    navigator: Navigator,
   };
 
   constructor(props) {
@@ -69,12 +68,12 @@ class F8TabsView extends React.Component {
   }
 
   renderNavigationView() {
-    var scheduleIcon = this.props.day === 1
-      ? require('./schedule/img/schedule-icon-1.png')
-      : require('./schedule/img/schedule-icon-2.png');
-    var scheduleIconSelected = this.props.day === 1
-      ? require('./schedule/img/schedule-icon-1-active.png')
-      : require('./schedule/img/schedule-icon-2-active.png');
+    var productMenuIcon = this.props.day === 1
+      ? require('./product/img/schedule-icon-1.png')
+      : require('./product/img/schedule-icon-2.png');
+    var productMenuIconSelected = this.props.day === 1
+      ? require('./product/img/schedule-icon-1-active.png')
+      : require('./product/img/schedule-icon-2-active.png');
     var accountItem, myF8Item, loginItem;
 
     if (this.props.user.isLoggedIn) {
@@ -91,11 +90,11 @@ class F8TabsView extends React.Component {
       );
       myF8Item = (
         <MenuItem
-          title="My F8"
-          selected={this.props.tab === 'my-schedule'}
-          onPress={this.onTabSelect.bind(this, 'my-schedule')}
-          icon={require('./schedule/img/my-schedule-icon.png')}
-          selectedIcon={require('./schedule/img/my-schedule-icon-active.png')}
+          title="My Basket"
+          selected={this.props.tab === 'my-basket'}
+          onPress={this.onTabSelect.bind(this, 'my-basket')}
+          icon={require('./product/img/my-schedule-icon.png')}
+          selectedIcon={require('./product/img/my-schedule-icon-active.png')}
         />
       );
     } else {
@@ -120,15 +119,16 @@ class F8TabsView extends React.Component {
       <View style={styles.drawer}>
         <Image
           style={styles.header}
-          source={require('./img/drawer-header.png')}>
+          source={require('./img/drawer-header.png')}
+        >
           {accountItem}
         </Image>
         <MenuItem
           title="Products"
           selected={this.props.tab === 'product'}
           onPress={this.onTabSelect.bind(this, 'product')}
-          icon={scheduleIcon}
-          selectedIcon={scheduleIconSelected}
+          icon={productMenuIcon}
+          selectedIcon={productMenuIconSelected}
         />
         {/*{myF8Item}*/}
         {/*<MenuItem
@@ -138,7 +138,7 @@ class F8TabsView extends React.Component {
           icon={require('./maps/img/maps-icon.png')}
           selectedIcon={require('./maps/img/maps-icon-active.png')}
         />*/}
-        <MenuItem
+        {/*<MenuItem
           title="Notifications"
           selected={this.props.tab === 'notifications'}
           onPress={this.onTabSelect.bind(this, 'notifications')}
@@ -152,7 +152,7 @@ class F8TabsView extends React.Component {
           onPress={this.onTabSelect.bind(this, 'info')}
           icon={require('./info/img/info-icon.png')}
           selectedIcon={require('./info/img/info-icon-active.png')}
-        />
+        />*/}
         {loginItem}
       </View>
     );
@@ -161,25 +161,14 @@ class F8TabsView extends React.Component {
   renderContent() {
     switch (this.props.tab) {
       case 'product':
+        return <GeneralProductView navigator={this.props.navigator} />;
+      case 'my-basket':
         return (
-          <GeneralProductView
+          <MyBasketView
             navigator={this.props.navigator}
-            />
-        );
-      case 'schedule':
-        return (
-          <GeneralScheduleView
-            navigator={this.props.navigator}
+            onJumpToProduct={() => this.props.onTabSelect('product')}
           />
         );
-
-      /*case 'my-schedule':
-        return (
-          <MyScheduleView
-            navigator={this.props.navigator}
-            onJumpToSchedule={() => this.props.onTabSelect('schedule')}
-          />
-        );*/
 
       // case 'map':
       //   return <F8MapView />;
@@ -199,7 +188,8 @@ class F8TabsView extends React.Component {
         ref="drawer"
         drawerWidth={290}
         drawerPosition="left"
-        renderNavigationView={this.renderNavigationView}>
+        renderNavigationView={this.renderNavigationView}
+      >
         <View style={styles.content} key={this.props.tab}>
           {this.renderContent()}
         </View>
@@ -216,7 +206,6 @@ F8TabsView.childContextTypes = {
 function select(store) {
   return {
     tab: store.navigation.tab,
-    day: store.navigation.day,
     user: store.user,
     notificationsBadge: unseenNotificationsCount(store) + store.surveys.length,
   };
@@ -224,7 +213,7 @@ function select(store) {
 
 function actions(dispatch) {
   return {
-    onTabSelect: (tab) => dispatch(switchTab(tab)),
+    onTabSelect: tab => dispatch(switchTab(tab)),
     logOut: () => dispatch(logOutWithPrompt()),
   };
 }

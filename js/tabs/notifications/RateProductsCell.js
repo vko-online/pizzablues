@@ -12,12 +12,12 @@ var View = require('View');
 var Image = require('Image');
 
 type Props = {
-  numberOfSessions: number;
+  numberOfProducts: number;
   onPress: () => void;
 };
 
-function RateSessionsCell({numberOfSessions, onPress}: Props) {
-  const pluralSuffix = numberOfSessions === 1 ? '' : 's';
+function RateProductsCell({numberOfProducts, onPress}: Props) {
+  const pluralSuffix = numberOfProducts === 1 ? '' : 's';
   return (
     <View style={styles.cell}>
       <Image
@@ -25,7 +25,7 @@ function RateSessionsCell({numberOfSessions, onPress}: Props) {
         source={require('../../rating/img/full-star.png')}
       />
       <Text style={styles.text}>
-        You have {numberOfSessions} session{pluralSuffix} to review
+        You have {numberOfProducts} product{pluralSuffix} to review
       </Text>
 
       <TouchableOpacity accessibilityTraits="button" onPress={onPress}>
@@ -72,4 +72,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = RateSessionsCell;
+module.exports = RateProductsCell;

@@ -4,10 +4,10 @@
 'use strict';
 
 var F8Colors = require('F8Colors');
-var F8SessionCell = require('F8SessionCell');
+var F8ProductCell = require('F8ProductCell');
 var React = require('React');
 var StyleSheet = require('StyleSheet');
-var findSessionByURI = require('findSessionByURI');
+var findProductByURI = require('findProductByURI');
 var { Text } = require('F8Text');
 var TouchableHighlight = require('TouchableHighlight');
 var View = require('View');
@@ -18,11 +18,11 @@ var { connect } = require('react-redux');
 class NotificationCell extends React.Component {
   render() {
     var attachment;
-    if (this.props.session) {
+    if (this.props.product) {
       attachment = (
-        <F8SessionCell
-          style={styles.session}
-          session={this.props.session}
+        <F8ProductCell
+          style={styles.product}
+          product={this.props.product}
           showStartEndTime={true}
         />
       );
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 10,
   },
-  session: {
+  product: {
     paddingVertical: undefined,
     paddingHorizontal: undefined,
     paddingLeft: undefined,
@@ -93,7 +93,7 @@ var styles = StyleSheet.create({
 
 function select(store, props) {
   return {
-    session: findSessionByURI(store.sessions, props.notification.url),
+    product: findProductByURI(store.products, props.notification.url),
     isSeen: store.notifications.seen[props.notification.id],
   };
 }

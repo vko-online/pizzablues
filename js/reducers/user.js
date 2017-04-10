@@ -9,7 +9,7 @@ import type {Action} from '../actions/types';
 export type State = {
   isLoggedIn: boolean;
   hasSkippedLogin: boolean;
-  sharedSchedule: ?boolean;
+  sharedBasket: ?boolean;
   id: ?string;
   name: ?string;
 };
@@ -17,21 +17,21 @@ export type State = {
 const initialState = {
   isLoggedIn: false,
   hasSkippedLogin: false,
-  sharedSchedule: null,
+  sharedBasket: null,
   id: null,
   name: null,
 };
 
 function user(state: State = initialState, action: Action): State {
   if (action.type === 'LOGGED_IN') {
-    let {id, name, sharedSchedule} = action.data;
-    if (sharedSchedule === undefined) {
-      sharedSchedule = null;
+    let {id, name, sharedBasket} = action.data;
+    if (sharedBasket === undefined) {
+      sharedBasket = null;
     }
     return {
       isLoggedIn: true,
       hasSkippedLogin: false,
-      sharedSchedule,
+      sharedBasket,
       id,
       name,
     };
@@ -40,7 +40,7 @@ function user(state: State = initialState, action: Action): State {
     return {
       isLoggedIn: false,
       hasSkippedLogin: true,
-      sharedSchedule: null,
+      sharedBasket: null,
       id: null,
       name: null,
     };
@@ -51,11 +51,11 @@ function user(state: State = initialState, action: Action): State {
   if (action.type === 'SET_SHARING') {
     return {
       ...state,
-      sharedSchedule: action.enabled,
+      sharedBasket: action.enabled,
     };
   }
   if (action.type === 'RESET_NUXES') {
-    return {...state, sharedSchedule: null};
+    return {...state, sharedBasket: null};
   }
   return state;
 }

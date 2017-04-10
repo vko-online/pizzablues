@@ -6,16 +6,7 @@
 
 import type { Action } from './types';
 
-type Schedule = {[key: string]: boolean};
-
 type Product = {[key: string]: boolean};
-
-function applyTopicsFilter(topics: Schedule): Action {
-  return {
-    type: 'APPLY_TOPICS_FILTER',
-    topics,
-  };
-}
 
 function applyCategoriesFilter(categories: Product): Action {
   return {
@@ -30,4 +21,4 @@ function clearFilter(): Action {
   };
 }
 
-module.exports = {applyTopicsFilter, clearFilter, applyCategoriesFilter};
+module.exports = {clearFilter, applyCategoriesFilter};

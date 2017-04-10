@@ -155,7 +155,7 @@ function select(store) {
     user: store.user,
     basketProducts: data(store),
     basket: store.basket,
-    // Only show friends who have something in their schedule
+    // Only show friends who have something in their baskets
     friends: store.friendsBaskets.filter(
       (friend) => Object.keys(friend.basket).length > 0
     ),

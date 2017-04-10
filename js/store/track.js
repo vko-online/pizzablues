@@ -23,14 +23,14 @@ function track(action: Action): void {
       AppEventsLogger.logEvent('Skip login', 1);
       break;
 
-    case 'SESSION_ADDED':
-      Parse.Analytics.track('addToSchedule', {id: action.id});
-      AppEventsLogger.logEvent('Added To Schedule', 1, {id: action.id});
+    case 'PRODUCT_ADDED':
+      Parse.Analytics.track('addToBasket', {id: action.id});
+      AppEventsLogger.logEvent('Added To Basket', 1, {id: action.id});
       break;
 
-    case 'SESSION_REMOVED':
-      Parse.Analytics.track('removeFromSchedule', {id: action.id});
-      AppEventsLogger.logEvent('Removed From Schedule', 1, {id: action.id});
+    case 'PRODUCT_REMOVED':
+      Parse.Analytics.track('removeFromBasket', {id: action.id});
+      AppEventsLogger.logEvent('Removed From Basket', 1, {id: action.id});
       break;
 
     case 'TURNED_ON_PUSH_NOTIFICATIONS':

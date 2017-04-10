@@ -11,7 +11,6 @@ export type Config = {
   wifiPassword: string;
   appLinkURL: string;
   appInvitePreviewImageURL: string;
-  sessionURLTemplate: string;
   productURLTemplate: string;
 };
 
@@ -20,7 +19,6 @@ const initialState: Config = {
   wifiPassword: '',
   appLinkURL: 'https://www.fbf8.com/',
   appInvitePreviewImageURL: '',
-  sessionURLTemplate: 'https://www.fbf8.com/schedule/session/{slug}',
   productURLTemplate: 'https://www.mysite.com/products/{productId}',
 };
 
@@ -32,8 +30,6 @@ function config(state: Config = initialState, action: Action): Config {
       appLinkURL: action.config.get('appLinkURL') || state.appLinkURL,
       appInvitePreviewImageURL: action.config.get('appInvitePreviewImageURL') ||
         state.appInvitePreviewImageURL,
-      sessionURLTemplate: action.config.get('sessionURLTemplate') ||
-        state.sessionURLTemplate,
       productURLTemplate: action.config.get('productURLTemplate') ||
         state.productURLTemplate,
     };

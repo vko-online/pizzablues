@@ -29,7 +29,7 @@ class LoginModal extends React.Component {
             Log in with Facebook
           </Text>
           <Text style={styles.h2}>
-            to save sessions to{'\n'}your schedule.
+            to save products to{'\n'}your basket.
           </Text>
           <LoginButton onLoggedIn={() => this.loggedIn()} />
           <F8Button

@@ -24,7 +24,7 @@ class SharingSettingsScreen extends React.Component {
   props: {
     navigator: Navigator;
     dispatch: () => void;
-    sharedSchedule: boolean;
+    sharedBasket: boolean;
     user: User;
   };
 
@@ -44,7 +44,7 @@ class SharingSettingsScreen extends React.Component {
           <Switch
             accessibilityLabel="Делитесь историей покупок и рекомендациями"
             style={styles.switch}
-            value={!!this.props.sharedSchedule}
+            value={!!this.props.sharedBasket}
             onValueChange={(enabled) => this.props.dispatch(setSharingEnabled(enabled))}
             onTintColor="#00E3AD"
           />
@@ -104,7 +104,7 @@ var styles = StyleSheet.create({
 function select(store) {
   return {
     user: store.user,
-    sharedSchedule: store.user.sharedSchedule,
+    sharedBasket: store.user.sharedBasket,
   };
 }
 

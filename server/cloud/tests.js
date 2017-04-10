@@ -22,7 +22,7 @@ Parse.Cloud.define('test_push', function(request, response) {
       alert: 'Hey ' + userName + ', look at this great website',
       url: 'https://www.fbf8.com/'
     };
-  } else if (request.params.url === 'session') {
+  } else if (request.params.url === 'product') {
     data = {
       alert: userName + ', "Designing at Facebook is about to begin"',
       url: 'f8://designing-at-facebook'
@@ -55,11 +55,11 @@ Parse.Cloud.define('test_survey', function(request, response) {
   }
 
   new Parse.Query(Survey)
-    .include('session')
+    .include('product')
     .find()
     .then(pickRandom)
     .then(function(survey) {
-      var sessionTitle = survey.get('session').get('sessionTitle');
+      var productTitle = survey.get('product').get('title');
       return new SurveyResult().save({
         user: user,
         survey: survey,
@@ -69,7 +69,7 @@ Parse.Cloud.define('test_survey', function(request, response) {
           push_time: new Date(Date.now() + 3000),
           data: {
             badge: 'Increment',
-            alert: 'How did "' + sessionTitle + '" go?',
+            alert: 'How did "' + productTitle + '" go?',
             e: true, // ephemeral
           }
         });
@@ -90,11 +90,11 @@ function pickRandom(list) {
 
 Parse.Cloud.define('test_attendance', function(request, response) {
   Parse.Cloud.useMasterKey();
-  var Agenda = Parse.Object.extend('Agenda');
-  new Parse.Query(Agenda).select(['id', 'sessionTitle']).find().then(function(agendas) {
-    return Parse.Promise.when(agendas.map(function(agenda) {
-      return new Parse.Query(Parse.User).equalTo('attendance', agenda).find(function(users) {
-        console.log('Users attending ' + agenda.get('sessionTitle') + ': ' + users.length);
+  var Product = Parse.Object.extend('Product');
+  new Parse.Query(Product).select(['id', 'title']).find().then(function(products) {
+    return Parse.Promise.when(products.map(function(product) {
+      return new Parse.Query(Parse.User).equalTo('review', product).find(function(users) {
+        console.log('Users attending ' + product.get('title') + ': ' + users.length);
       });
     }));
   }).then(

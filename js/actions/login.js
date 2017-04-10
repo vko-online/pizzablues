@@ -9,24 +9,24 @@ const FacebookSDK = require('FacebookSDK');
 const ActionSheetIOS = require('ActionSheetIOS');
 const {Platform} = require('react-native');
 const Alert = require('Alert');
-const {restoreSchedule, loadFriendsSchedules} = require('./schedule');
+const {restoreBasket, loadFriendsBaskets} = require('./basket');
 const {updateInstallation} = require('./installation');
 const {loadSurveys} = require('./surveys');
 
-import type { Action, ThunkAction } from './types';
+import type {Action, ThunkAction} from './types';
 
 async function ParseFacebookLogin(scope): Promise {
   return new Promise((resolve, reject) => {
     Parse.FacebookUtils.logIn(scope, {
       success: resolve,
-      error: (user, error) => reject(error && error.error || error),
+      error: (user, error) => reject((error && error.error) || error),
     });
   });
 }
 
 async function queryFacebookAPI(path, ...args): Promise {
   return new Promise((resolve, reject) => {
-    FacebookSDK.api(path, ...args, (response) => {
+    FacebookSDK.api(path, ...args, response => {
       if (response && !response.error) {
         resolve(response);
       } else {
@@ -53,28 +53,23 @@ async function _logInWithFacebook(source: ?string): Promise<Array<Action>> {
     data: {
       id: profile.id,
       name: profile.name,
-      sharedSchedule: user.get('sharedSchedule'),
+      sharedBasket: user.get('sharedBasket'),
     },
   };
 
-  return Promise.all([
-    Promise.resolve(action),
-    restoreSchedule(),
-  ]);
+  return Promise.all([Promise.resolve(action), restoreBasket()]);
 }
 
 function logInWithFacebook(source: ?string): ThunkAction {
-  return (dispatch) => {
+  return dispatch => {
     const login = _logInWithFacebook(source);
 
-    // Loading friends schedules shouldn't block the login process
-    login.then(
-      (result) => {
-        dispatch(result);
-        dispatch(loadFriendsSchedules());
-        dispatch(loadSurveys());
-      }
-    );
+    // Loading friends basket shouldn't block the login process
+    login.then(result => {
+      dispatch(result);
+      dispatch(loadFriendsBaskets());
+      dispatch(loadSurveys());
+    });
     return login;
   };
 }
@@ -86,7 +81,7 @@ function skipLogin(): Action {
 }
 
 function logOut(): ThunkAction {
-  return (dispatch) => {
+  return dispatch => {
     Parse.User.logOut();
     FacebookSDK.logout();
     updateInstallation({user: null, channels: []});
@@ -110,21 +105,17 @@ function logOutWithPrompt(): ThunkAction {
           destructiveButtonIndex: 0,
           cancelButtonIndex: 1,
         },
-        (buttonIndex) => {
+        buttonIndex => {
           if (buttonIndex === 0) {
             dispatch(logOut());
           }
-        }
+        },
       );
     } else {
-      Alert.alert(
-        `Hi, ${name}`,
-        'Log out from F8?',
-        [
-          { text: 'Cancel' },
-          { text: 'Log out', onPress: () => dispatch(logOut()) },
-        ]
-      );
+      Alert.alert(`Hi, ${name}`, 'Log out from F8?', [
+        {text: 'Cancel'},
+        {text: 'Log out', onPress: () => dispatch(logOut())},
+      ]);
     }
   };
 }

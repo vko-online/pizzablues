@@ -11,6 +11,7 @@ const createParseReducer = require('./createParseReducer');
 export type Product = {
   id: string;
   title: string;
+  slug?: string;
   image: string;
   description: string;
   price: string;
@@ -19,11 +20,15 @@ export type Product = {
   store: Store;
 };
 
+function slug(title: string) {
+  return title.replace('', '');
+}
 
 function fromParseProducts(product: Object): Product {
   return {
     id: product.id,
     title: product.get('title'),
+    slug: slug(product.get('title')),
     image: product.get('image'),
     description: product.get('description'),
     price: product.get('price'),
