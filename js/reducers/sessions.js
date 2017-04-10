@@ -6,15 +6,6 @@
 
 const createParseReducer = require('./createParseReducer');
 
-export type Creator = {
-  id: string;
-  name: string;
-  avatar: string;
-  email: string;
-  facebook_id: string;
-  username: string;
-};
-
 export type Session = {
   id: string;
   title: string;
@@ -27,7 +18,6 @@ export type Session = {
   endTime: number;
   map: ? string;
   location: ? string;
-  creator: Creator
 };
 
 function fromParseSessions(session: Object): Session {
@@ -43,14 +33,6 @@ function fromParseSessions(session: Object): Session {
     endTime: session.get('endTime') && session.get('endTime').getTime(),
     map: session.get('sessionMap') && session.get('sessionMap').url(),
     location: session.get('sessionLocation'),
-    creator: {
-      // id: session.get('creator') ? session.get('creator').get('id') : '',
-      // name: session.get('creator') ? session.get('creator').get('name') : '',
-      // email: session.get('creator') ? session.get('creator').get('email') : '',
-      // facebook_id: session.get('creator') ? session.get('creator').get('facebook_id') : '',
-      // username: session.get('creator') ? session.get('creator').get('username') : '',
-      // avatar: session.get('creator') ? `http://graph.facebook.com/${session.get('creator').get('facebook_id')}/picture?width=60&height=60` : ''
-    },
   };
 }
 

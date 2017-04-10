@@ -21,7 +21,7 @@ var Platform = require('Platform');
 import type {Item as HeaderItem} from 'F8Header';
 
 type Props = {
-  title: string;
+  title?: string;
   leftItem?: HeaderItem;
   rightItem?: HeaderItem;
   extraItems?: Array<HeaderItem>;
@@ -41,7 +41,7 @@ type State = {
   stickyHeaderHeight: number;
 };
 
-const EMPTY_CELL_HEIGHT = Dimensions.get('window').height > 600 ? 200 : 135;
+const EMPTY_CELL_HEIGHT = 135;
 
 var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
 var ProgressBarAndroid = require('ProgressBarAndroid');

@@ -47,6 +47,7 @@ class F8InfoView extends React.Component {
         backgroundColor={'#47BFBF'}>
         <PureListView
           renderRow={() => { } }
+          data={[]}
           renderEmptyList={() => (
             <View>
               <WiFiDetails

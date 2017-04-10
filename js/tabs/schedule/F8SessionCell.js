@@ -44,9 +44,6 @@ class F8SessionCell extends React.Component {
     var locationColor = F8Colors.colorForLocation(location);
     var cell =
       <View style={[styles.cell, this.props.style]}>
-        <Image
-          style={styles.img}
-          source={{ uri: session.creator.avatar }} />
         <View style={styles.lane}>
           <View style={styles.titleSection}>
             <Text numberOfLines={2} style={styles.titleText}>

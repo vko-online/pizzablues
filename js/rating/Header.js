@@ -12,30 +12,23 @@ const {
   StyleSheet,
 } = require('react-native');
 
-import type {Session} from '../reducers/sessions';
+import type {Product} from '../reducers/products';
 
 type Props = {
-  session: Session;
+  product: Product,
 };
 
-function Header({session}: Props) {
-  const pics = session.speakers.map((speaker) => (
-    <Image
-      key={speaker.id}
-      source={{uri: speaker.pic}}
-      style={styles.pic}
-    />
-  ));
+function Header({product}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.background}>
         <Image source={require('./img/header.png')} />
       </View>
       <Text style={styles.title}>
-        {session.title}
+        {product.title}
       </Text>
-      <View style={styles.speakers}>
-        {pics}
+      <View style={styles.store}>
+        <Image source={{uri: product.store.image}} style={styles.pic} />
       </View>
     </View>
   );
@@ -67,7 +60,7 @@ var styles = StyleSheet.create({
     color: F8Colors.darkText,
     textAlign: 'center',
   },
-  speakers: {
+  store: {
     marginTop: 15,
     flexDirection: 'row',
   },
@@ -80,47 +73,32 @@ var styles = StyleSheet.create({
 });
 
 module.exports = Header;
-module.exports.__cards__ = (define) => {
-  const MOCK_SESSION = {
+module.exports.__cards__ = define => {
+  const MOCK_PRODUCT = {
     id: 'mock1',
     title: 'Building For the Next Billion',
-    speakers: [
-      {
-        id: '1',
-        bio: '',
-        name: 'Foo',
-        title: '',
-        pic: 'https://graph.facebook.com/100001244322535/picture?width=60&height=60',
-      },
-      {
-        id: '2',
-        bio: '',
-        name: 'Bar',
-        title: '',
-        pic: 'https://graph.facebook.com/10152531777042364/picture?width=60&height=60',
-      },
-    ],
-    allDay: false,
+    store: {
+      id: '2',
+      title: 'Bar',
+      image: 'https://graph.facebook.com/10152531777042364/picture?width=60&height=60',
+    },
     description: '...',
-    startTime: 0,
-    endTime: 0,
-    hasDetails: true,
-    location: 'space',
-    map: 'space',
-    onMySchedule: false,
     slug: 'next-billion',
-    tags: [],
   };
 
   define('Example', (state = null, update) => (
-    <Header session={MOCK_SESSION} />
+    <Header product={MOCK_PRODUCT} />
   ));
 
   define('Long title', () => (
-    <Header session={{
-      ...MOCK_SESSION,
-      title: 'Inside Facebook\'s Infrastructure (Part 1): The System that Serves Billions',
-      speakers: [],
-    }} />
+    <Header
+      product={{
+        ...MOCK_PRODUCT,
+        title: "Inside Facebook's Infrastructure (Part 1): The System that Serves Billions",
+        store: {
+          image: 'https://graph.facebook.com/10152531777042364/picture?width=60&height=60',
+        },
+      }}
+    />
   ));
 };

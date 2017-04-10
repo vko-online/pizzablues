@@ -11,11 +11,11 @@ var React = require('React');
 var View = require('View');
 
 type Rows = Array<Object>;
-type RowsAndSections = {
-  [sectionID: string]: Object;
-};
+// type RowsAndSections = {
+//   [sectionID: string]: Object;
+// };
 
-export type Data = Rows | RowsAndSections;
+export type Data = Rows;
 type RenderElement = () => ?ReactElement;
 
 type Props = {

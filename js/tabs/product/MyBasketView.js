@@ -119,7 +119,7 @@ class MyBasketView extends React.Component {
     );
   }
 
-  renderEmptyProductsList(decision: string) {
+  renderEmptyProductsList() {
     return (
       <EmptyProduct
         key="basket"
