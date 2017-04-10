@@ -14,10 +14,10 @@ const RatingQuestion = require('./RatingQuestion');
 const F8Button = require('F8Button');
 
 import type {Question} from '../reducers/surveys';
-import type {Session} from '../reducers/sessions';
+import type {Product} from '../reducers/products';
 
 type Props = {
-  session: Session;
+  product: Product;
   questions: Array<Question>;
   onSubmit: (answers: Array<number>) => void;
   style?: any;
@@ -46,13 +46,13 @@ class RatingCard extends React.Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <ScrollView>
-          <Header session={this.props.session} />
+          <Header product={this.props.product} />
           {questions}
         </ScrollView>
         <F8Button
           style={styles.button}
           type={completed ? 'primary' : 'bordered'}
-          caption="Submit Review"
+          caption="Отправить резенцию"
           onPress={() => completed && this.submit()}
         />
       </View>

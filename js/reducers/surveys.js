@@ -14,7 +14,7 @@ export type Question = {
 
 export type Survey = {
   id: string;
-  sessionId: string;
+  productId: string;
   questions: Array<Question>;
 };
 

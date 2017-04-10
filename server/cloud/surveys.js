@@ -1,7 +1,7 @@
 'use strict';
 /* global Parse */
 
-var Agenda = Parse.Object.extend('Agenda');
+var Product = Parse.Object.extend('Product');
 var Attendance = Parse.Object.extend('Attendance');
 var Survey = Parse.Object.extend('Survey');
 var SurveyResult = Parse.Object.extend('SurveyResult');
@@ -13,22 +13,22 @@ Parse.Cloud.define('send_surveys', function(request, response) {
     return response.error('Need master key');
   }
 
-  var sessionId = request.params.sessionId;
-  if (!sessionId) {
-    return response.error('Need sessionId');
+  var productId = request.params.productId;
+  if (!productId) {
+    return response.error('Need productId');
   }
 
-  console.log('Fetching attendees for ' + sessionId);
-  var agenda = new Agenda({id: sessionId});
+  console.log('Fetching attendees for ' + productId);
+  var agenda = new Product({id: productId});
   var attendees = new Parse.Query(Attendance)
-    .equalTo('agenda', agenda)
+    .equalTo('product', agenda)
     .notEqualTo('sent', true)
     .find();
   var survey = new Parse.Query(Survey)
-    .equalTo('session', agenda)
+    .equalTo('product', agenda)
     .first();
 
-  Parse.Promise.when(attendees, survey, new Parse.Query(Agenda).get(sessionId))
+  Parse.Promise.when(attendees, survey, new Parse.Query(Product).get(productId))
     .then(sendSurveys)
     .then(
       function(value) { response.success(value); },
@@ -48,7 +48,7 @@ Parse.Cloud.define('surveys', function(request, response) {
     .equalTo('user', user)
     .equalTo('rawAnswers', null)
     .include('survey')
-    .include('survey.session')
+    .include('survey.product')
     .find()
     .then(toSurveys)
     .then(
@@ -89,9 +89,9 @@ Parse.Cloud.define('submit_survey', function(request, response) {
     );
 });
 
-function sendSurveys(attendees, survey, session) {
+function sendSurveys(attendees, survey, product) {
   if (!survey) {
-    throw new Error('Survey not found for session ' + session.id);
+    throw new Error('Survey not found for product ' + product.id);
   }
 
   console.log('Found ' + attendees.length + ' attendees');
@@ -105,7 +105,7 @@ function sendSurveys(attendees, survey, session) {
         where: new Parse.Query(Parse.Installation).equalTo('user', user),
         data: {
           badge: 'Increment',
-          alert: 'Please rate "' + session.get('sessionTitle') + '"',
+          alert: 'Пожалуйста оцените "' + product.get('title') + '"',
           e: true, // ephemeral
         }
       });
@@ -140,7 +140,7 @@ function toSurveys(emptyResults) {
 
     return {
       id: emptyResult.id,
-      sessionId: survey.get('session').id,
+      productId: survey.get('product').id,
       questions: questions,
     };
   });
