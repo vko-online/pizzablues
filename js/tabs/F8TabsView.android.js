@@ -7,7 +7,7 @@
 
 var F8InfoView = require('F8InfoView');
 var F8Colors = require('F8Colors');
-var F8MapView = require('F8MapView');
+// var F8MapView = require('F8MapView');
 var F8NotificationsView = require('F8NotificationsView');
 var React = require('React');
 var Navigator = require('Navigator');
@@ -130,7 +130,7 @@ class F8TabsView extends React.Component {
           icon={productMenuIcon}
           selectedIcon={productMenuIconSelected}
         />
-        {/*{myF8Item}*/}
+        {myF8Item}
         {/*<MenuItem
           title="Maps"
           selected={this.props.tab === 'map'}

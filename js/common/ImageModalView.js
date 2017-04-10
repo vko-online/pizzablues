@@ -3,7 +3,6 @@ var Modal = require('Modal');
 var F8Header = require('F8Header');
 var TouchableOpacity = require('TouchableOpacity');
 var View = require('View');
-var StyleSheet = require('StyleSheet');
 
 type Props = {
   children: Array<ReactElement>;
@@ -54,16 +53,5 @@ class ImageModalView extends React.Component {
     );
   }
 }
-
-var styles = StyleSheet.create({
-  closeBtn: {
-    position: 'absolute',
-    top: 50,
-    right: 50,
-    width: 40,
-    height: 20,
-    backgroundColor: 'red',
-  }
-});
 
 module.exports = ImageModalView;

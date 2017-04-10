@@ -76,7 +76,7 @@ if (IS_DEVELOPMENT) {
   );
 }
 
-server.use('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+server.use('/', (req, res) => res.sendFile(path.join(__dirname, '/index.html')));
 
 server.listen(SERVER_PORT, () => console.log(
   `Server is now running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${SERVER_PORT}`

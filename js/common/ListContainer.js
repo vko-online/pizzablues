@@ -6,7 +6,7 @@
 
 var Animated = require('Animated');
 var NativeModules = require('NativeModules');
-var Dimensions = require('Dimensions');
+// var Dimensions = require('Dimensions');
 var F8Header = require('F8Header');
 var F8SegmentedControl = require('F8SegmentedControl');
 var ParallaxBackground = require('ParallaxBackground');
@@ -43,11 +43,11 @@ type State = {
 
 const EMPTY_CELL_HEIGHT = 135;
 
-var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
-var ProgressBarAndroid = require('ProgressBarAndroid');
-const ActivityIndicator = Platform.OS === 'ios'
-  ? ActivityIndicatorIOS
-  : ProgressBarAndroid;
+// var ActivityIndicatorIOS = require('ActivityIndicatorIOS');
+// var ProgressBarAndroid = require('ProgressBarAndroid');
+// const ActivityIndicator = Platform.OS === 'ios'
+//   ? ActivityIndicatorIOS
+//   : ProgressBarAndroid;
 
 // var Relay = require('react-relay');
 // var RelayRenderer = require('react-relay/lib/RelayRenderer.js');
