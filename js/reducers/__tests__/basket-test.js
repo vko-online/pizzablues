@@ -18,9 +18,9 @@ it('adds products to basket', () => {
     basket({}, { type: 'PRODUCT_ADDED', id: 'one' })
   ).toEqual({ one: true });
 
-  // expect(
-  //   basket({ id: 'one' }, { type: 'PRODUCT_ADDED', id: 'two'})
-  // ).toEqual({ one: true, two: true });
+  expect(
+    basket({ one: true }, { type: 'PRODUCT_ADDED', id: 'two'})
+  ).toEqual({ one: true, two: true });
 });
 
 it('removes products from basket', () => {
