@@ -1,9 +1,8 @@
 import Parse from 'parse/node';
-const path = require('path');
 
-const maslenica = require(path.join(__dirname, '../data/maslenica.json'));
-const teplica = require(path.join(__dirname, '../data/teplica.json'));
-const pizzaBlues = require(path.join(__dirname, '../data/pizza-blues.json'));
+const maslenica = require('./maslenica.json');
+const teplica = require('./teplica.json');
+const pizzaBlues = require('./pizza-blues.json');
 
 const SERVER_PORT = process.env.PORT || 8080;
 
