@@ -40,11 +40,10 @@ module.exports = {
     loadParseQuery('LOADED_PAGES', new Parse.Query(Page)),
   loadMaps: (): ThunkAction =>
     loadParseQuery('LOADED_MAPS', new Parse.Query(Maps)),
-
   loadNotifications: (): ThunkAction =>
     loadParseQuery('LOADED_NOTIFICATIONS', new Parse.Query(Notification)),
   loadProducts: (): ThunkAction =>
     loadParseQuery('LOADED_PRODUCTS', new Parse.Query(Product).include('store')),
   loadStores: (): ThunkAction =>
-    loadParseQuery('LOADED_STORES', new Parse.Query(Store)),
+    loadParseQuery('LOADED_STORES', new Parse.Query(Store).equalTo('enabled', true)),
 };

@@ -1,10 +1,12 @@
 {
-  "name": "activity_app",
+  "name": "paul_app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "babel-node ./server/server.js",
+    "postinstall": "npm run import-json",
     "import-data": "babel-node ./scripts/import-data-from-parse.js",
+    "import-json": "babel-node ./scripts/import-data-from-json.js",
     "update-schema": "babel-node ./server/schema/updateSchema.js",
     "test": "jest",
     "lint": "eslint ."

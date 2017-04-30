@@ -30,10 +30,6 @@ function colorForLocation(location: ? string): string {
   return color;
 }
 
-function colorForTopic(count: number, index: number): string {
-  const hue = Math.round(360 * index / (count + 1));
-  return `hsl(${hue}, 74%, 65%)`;
-}
 
 function colorForCategory(count: number, index: number): string {
   const hue = Math.round(360 * index / (count + 1));
@@ -47,6 +43,5 @@ module.exports = {
   cellBorder: '#EEEEEE',
   darkBackground: '#183E63',
   colorForLocation,
-  colorForTopic,
   colorForCategory,
 };

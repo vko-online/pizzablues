@@ -27,6 +27,7 @@ async function importClass(data) {
   sObj.set('hours', data.hours);
   sObj.set('phones', data.phones);
   sObj.set('image', data.image);
+  sObj.set('enabled', true);
   sObj = await sObj.save();
 
   for (var i = 0; i < data.products.length; i++) {

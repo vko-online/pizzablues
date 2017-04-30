@@ -41,6 +41,7 @@ function fromParseProducts(product: Object): Product {
       hours: product.get('store') ? product.get('store').get('hours') : '',
       image: product.get('store') ? product.get('store').get('image') : '',
       phones: product.get('store') ? product.get('store').get('phones') : [],
+      enabled: product.get('store') ? product.get('store').get('enabled') : false,
     },
   };
 }

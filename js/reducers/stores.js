@@ -23,7 +23,8 @@ function fromParseStores(store: Object): Store {
     shortTitle: storeTitle.substring(storeTitle.indexOf('«') + 1, storeTitle.indexOf('»')),
     image: store.get('image'),
     hours: store.get('hours'),
-    phones: store.get('phones')
+    phones: store.get('phones'),
+    enabled: store.get('enabled')
   };
 }
 
