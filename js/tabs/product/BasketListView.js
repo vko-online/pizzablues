@@ -70,7 +70,7 @@ renderSectionHeader(sectionData: any, sectionID: string) {
 }
 
 renderFooter() {
-  return <CheckoutButton onPress={this.checkout} />;
+  return null; // <CheckoutButton onPress={this.checkout} />;
 }
 
 renderRow(product: Product) {

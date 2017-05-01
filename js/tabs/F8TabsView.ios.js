@@ -6,8 +6,8 @@
 'use strict';
 
 var F8Colors = require('F8Colors');
-// var F8InfoView = require('F8InfoView');
-// var F8NotificationsView = require('F8NotificationsView');
+var F8InfoView = require('F8InfoView');
+var F8NotificationsView = require('F8NotificationsView');
 var GeneralProductView = require('./product/GeneralProductView');
 var MyBasketView = require('./product/MyBasketView');
 var React = require('React');
@@ -48,7 +48,7 @@ class F8TabsView extends React.Component {
           />
         </TabBarItemIOS>
         <TabBarItemIOS
-          title="Корзина"
+          title="Избранное"
           selected={this.props.tab === 'my-basket'}
           onPress={this.onTabSelect.bind(this, 'my-basket')}
           icon={require('./product/img/my-schedule-icon.png')}
@@ -58,7 +58,7 @@ class F8TabsView extends React.Component {
             onJumpToProduct={() => this.props.onTabSelect('product')}
           />
         </TabBarItemIOS>
-        {/*<TabBarItemIOS
+        <TabBarItemIOS
           title="Акции"
           selected={this.props.tab === 'notifications'}
           onPress={this.onTabSelect.bind(this, 'notifications')}
@@ -74,7 +74,7 @@ class F8TabsView extends React.Component {
           icon={require('./info/img/info-icon.png')}
           selectedIcon={require('./info/img/info-icon-active.png')}>
           <F8InfoView navigator={this.props.navigator} />
-        </TabBarItemIOS>*/}
+        </TabBarItemIOS>
       </TabBarIOS>
     );
   }

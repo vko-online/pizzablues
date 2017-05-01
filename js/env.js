@@ -6,7 +6,7 @@
 
 module.exports = {
   testMenuEnabled: true,
-  serverURL: 'http://192.168.1.108:8080',
+  serverURL: 'http://paul-server.herokuapp.com',
   version: 324,
   fontFamily: 'Avenir Next',
 };

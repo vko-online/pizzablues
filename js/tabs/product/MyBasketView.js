@@ -71,7 +71,7 @@ class MyBasketView extends React.Component {
 
     return (
       <ListContainer
-        title="Корзина"
+        title="Избранное"
         parallaxContent={profilePicture}
         backgroundImage={require('./img/my-f8-background.png')}
         backgroundColor={'#A8D769'}
@@ -93,14 +93,14 @@ class MyBasketView extends React.Component {
 
     return [
       <BasketListView
-        title="В корзине"
+        title="Мои избранные"
         key="inBasket"
         products={this.props.basketProducts}
         renderEmptyList={this.renderEmptyProductsList}
         navigator={this.props.navigator}
       />,
       <FriendsListView
-        title="Корзина друзей"
+        title="Избранное друзей"
         key="friendsBasket"
         friends={this.props.friends}
         navigator={this.props.navigator}

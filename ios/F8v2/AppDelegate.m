@@ -33,7 +33,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
+//  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #ifdef DEBUG
   NSString *ip = [[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ip" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
 
@@ -41,7 +41,7 @@
     ip = @"127.0.0.1";
   }
 
-  jsCodeLocation = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=true", ip]];
+  jsCodeLocation = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=false", ip]];
 #else
   jsCodeLocation = [CodePush bundleURL];
 #endif
@@ -51,12 +51,12 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 
-  NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil];
-  UIImageView *loadingView = [[[objects objectAtIndex:0] subviews] objectAtIndex:0];
-  loadingView = [[UIImageView alloc] initWithImage:[loadingView image]];
-  loadingView.frame = [UIScreen mainScreen].bounds;
+//  NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil];
+//  UIImageView *loadingView = [[[objects objectAtIndex:0] subviews] objectAtIndex:0];
+//  loadingView = [[UIImageView alloc] initWithImage:[loadingView image]];
+//  loadingView.frame = [UIScreen mainScreen].bounds;
 
-  rootView.loadingView = loadingView;
+//  rootView.loadingView = loadingView;
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];

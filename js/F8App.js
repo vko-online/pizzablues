@@ -47,8 +47,6 @@ var F8App = React.createClass({
 
     updateInstallation({ version });
     CodePush.sync({ installMode: CodePush.InstallMode.ON_NEXT_RESUME });
-
-    console.log('stores', this.props.stores);
   },
 
   componentWillUnmount: function () {
@@ -91,7 +89,6 @@ var styles = StyleSheet.create({
 function select(store) {
   return {
     isLoggedIn: store.user.isLoggedIn || store.user.hasSkippedLogin,
-    stores: store.stores,
   };
 }
 

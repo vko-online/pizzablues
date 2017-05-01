@@ -13,23 +13,28 @@ var View = require('View');
 const {connect} = require('react-redux');
 var WiFiDetails = require('./WiFiDetails');
 
-import type {Page, FAQ, Config } from '../../reducers';
+import type {Page, Faq, Config } from '../../reducers';
 
 type Props = {
   pages: Array<Page>;
-  faqs: Array<FAQ>;
+  faqs: Array<Faq>;
   config: Config;
 }
 
 const POLICIES_LINKS = [{
-  title: 'Terms of Service',
-  url: 'https://m.facebook.com/terms?_rdr',
+  title: 'Условия использования',
+  url: 'https://paul-server.herokuapp.com',
 }, {
-  title: 'Data Policy',
-  url: 'https://m.facebook.com/policies?_rdr',
+  title: 'Политика конфиденциальности',
+  url: 'https://paul-server.herokuapp.com',
+}];
+
+const PAGES_LINKS = [{
+  title: 'Фейсбук',
+  url: 'https://www.facebook.com/paul.esentai',
 }, {
-  title: 'Code of Conduct',
-  url: 'https://www.fbf8.com/code-of-conduct',
+  title: 'Инстаграм',
+  url: 'https://www.instagram.com/paul_almaty',
 }];
 
 class F8InfoView extends React.Component {
@@ -42,7 +47,7 @@ class F8InfoView extends React.Component {
   render() {
     return (
       <ListContainer
-        title="Information"
+        title="Информация"
         backgroundImage={require('./img/info-background.png')}
         backgroundColor={'#47BFBF'}>
         <PureListView
@@ -55,8 +60,8 @@ class F8InfoView extends React.Component {
                 password={this.props.config.wifiPassword}
                 />
               <CommonQuestions faqs={this.props.faqs} />
-              <LinksList title="Facebook pages" links={this.props.pages} />
-              <LinksList title="Facebook policies" links={POLICIES_LINKS} />
+              <LinksList title="Официальные страницы" links={PAGES_LINKS} />
+              <LinksList title="Правила" links={POLICIES_LINKS} />
             </View>
           )}
           {...this.props}

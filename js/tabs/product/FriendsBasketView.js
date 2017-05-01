@@ -40,7 +40,7 @@ class FriendsBasketView extends React.Component {
     const firstName = this.props.friend.name.split(' ')[0];
     return (
       <ListContainer
-        title={`Корзина ${firstName}'`}
+        title={`Список избранных ${firstName}`}
         parallaxContent={<ProfilePicture userID={this.props.friend.id} size={100} />}
         backgroundImage={require('./img/schedule-background.png')}
         backgroundColor={'#5597B8'}
@@ -60,7 +60,7 @@ class FriendsBasketView extends React.Component {
     return (
       <EmptyProduct
         title="Нет данных"
-        text={`${this.props.friend.name}  еще не добавил товары в корзину`}
+        text={`${this.props.friend.name}  еще не добавил товары в избранное`}
       />
     );
   }

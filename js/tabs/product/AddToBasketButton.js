@@ -25,7 +25,7 @@ type State = {
 };
 
 const SAVED_LABEL = 'Добавлено';
-const ADD_LABEL = 'Добавить в корзину';
+const ADD_LABEL = 'Добавить в избранные';
 
 class AddToBasketButton extends React.Component {
   props: Props;
@@ -150,8 +150,8 @@ var styles = StyleSheet.create({
     flex: 1,
     borderRadius: HEIGHT / 2,
     backgroundColor: 'transparent',
-    paddingHorizontal: 40,
-    marginHorizontal: 40,
+    paddingHorizontal: 60,
+    marginHorizontal: 20,
   },
   content: {
     position: 'absolute',

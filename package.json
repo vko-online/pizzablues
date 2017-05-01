@@ -3,11 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "babel-node ./server/server.js",
-    "postinstall": "npm run import-json",
-    "import-data": "babel-node ./scripts/import-data-from-parse.js",
-    "import-json": "babel-node ./scripts/import-data-from-json.js",
-    "update-schema": "babel-node ./server/schema/updateSchema.js",
+    "start": "react-native run-ios",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -16,11 +12,8 @@
     "async": "https://registry.npmjs.org/async/-/async-1.5.2.tgz",
     "babel-cli": "~6.10.1",
     "crc32": "~0.2.2",
-    "express": "~4.14.0",
     "moment": "~2.13.0",
     "parse": "~1.8.2",
-    "parse-dashboard": "~1.0.8",
-    "parse-server": "~2.2.6",
     "react": "~15.1.0",
     "react-native": "0.28.0",
     "react-native-code-push": "~1.12.2-beta",
@@ -37,8 +30,7 @@
     "redux-persist": "~3.2.2",
     "redux-thunk": "~2.1.0",
     "reselect": "~2.5.1",
-    "tcomb-form-native": "^0.6.4",
-    "x-ray": "^2.3.2"
+    "tcomb-form-native": "^0.6.4"
   },
   "devDependencies": {
     "babel-eslint": "~6.1.0",

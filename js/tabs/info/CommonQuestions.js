@@ -18,7 +18,7 @@ class CommonQuestions extends React.Component {
       (<Row question={question} answer={answer} key={question} />)
     );
     return (
-      <Section title="Common questions">
+      <Section title="Часто задаваемые вопросы">
         <ItemsWithSeparator separatorStyle={styles.separator}>
           {content}
         </ItemsWithSeparator>

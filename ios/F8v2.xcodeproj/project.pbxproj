@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		002BD47E1CA7399D00E80F7A /* F8Scrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BD47D1CA7399D00E80F7A /* F8Scrolling.m */; };
-		0086BC3A1C90DDE500EC8D24 /* Splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0086BC391C90DDE500EC8D24 /* Splash@2x.png */; };
 		0095423B1C175AB600433EAF /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0095423A1C175AA200433EAF /* libBVLinearGradient.a */; };
-		00AE9D3C1C44464400514148 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00AE9D3B1C44464400514148 /* Default-568h@2x.png */; };
 		00D006A71CA9D08A001C592C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00D006A61CA9D08A001C592C /* Settings.bundle */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7A7931406B2560B8A7347FB6 /* libPods-F8v2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD44AA9DD03A6B80ABA2B850 /* libPods-F8v2.a */; };
@@ -39,16 +36,13 @@
 /* Begin PBXFileReference section */
 		002BD47C1CA7399D00E80F7A /* F8Scrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F8Scrolling.h; sourceTree = "<group>"; };
 		002BD47D1CA7399D00E80F7A /* F8Scrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F8Scrolling.m; sourceTree = "<group>"; };
-		0086BC391C90DDE500EC8D24 /* Splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash@2x.png"; sourceTree = "<group>"; };
 		009542351C175AA200433EAF /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		00AE9D3B1C44464400514148 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		00D006A61CA9D08A001C592C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* F8v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = F8v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* F8v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F8v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = F8v2/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = F8v2/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = F8v2/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = F8v2/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = F8v2/main.m; sourceTree = "<group>"; };
@@ -104,14 +98,11 @@
 		13B07FAE1A68108700A75B9A /* F8v2 */ = {
 			isa = PBXGroup;
 			children = (
-				0086BC391C90DDE500EC8D24 /* Splash@2x.png */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				00AE9D3B1C44464400514148 /* Default-568h@2x.png */,
 				002BD47C1CA7399D00E80F7A /* F8Scrolling.h */,
 				002BD47D1CA7399D00E80F7A /* F8Scrolling.m */,
 				00D006A61CA9D08A001C592C /* Settings.bundle */,
@@ -281,9 +272,6 @@
 			files = (
 				00D006A71CA9D08A001C592C /* Settings.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				0086BC3A1C90DDE500EC8D24 /* Splash@2x.png in Resources */,
-				00AE9D3C1C44464400514148 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,18 +367,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = F8v2;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -434,6 +410,7 @@
 			baseConfigurationReference = AC693429287C251DA7465449 /* Pods-F8v2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
@@ -460,6 +437,7 @@
 			baseConfigurationReference = 3F2AE10902A4B3DF9B9ADD12 /* Pods-F8v2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = E4TX258CH3;

@@ -65,7 +65,7 @@ class F8NotificationsView extends React.Component {
     return (
       <View style={{flex: 1}}>
         <ListContainer
-          title="Notifications"
+          title="Новости и Акции"
           backgroundImage={require('./img/notifications-background.png')}
           backgroundColor={'#E78196'}
           {...this.renderTestItems()}>
@@ -101,8 +101,8 @@ class F8NotificationsView extends React.Component {
   renderEmptyList() {
     return (
       <EmptyProduct
-        title="No Notifications Yet"
-        text="Important updates and announcements will appear here"
+        title="Пока нет никаких новостей"
+        text="Важные новости, акции или обновления будут опубликованы здесь"
       />
     );
   }

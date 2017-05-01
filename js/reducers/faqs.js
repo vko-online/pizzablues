@@ -6,13 +6,13 @@
 
 const createParseReducer = require('./createParseReducer');
 
-export type FAQ = {
+export type Faq = {
     id: string;
     question: string;
     answer: string;
 }
 
-function fromParseFaqs(faq: Object): FAQ {
+function fromParseFaqs(faq: Object): Faq {
     return {
         id: faq.id,
         question: faq.get('question'),
