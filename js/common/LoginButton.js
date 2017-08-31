@@ -50,7 +50,7 @@ class LoginButton extends React.Component {
       <F8Button
         style={[styles.button, this.props.style]}
         icon={require('../login/img/f-logo.png')}
-        caption="Log in with Facebook"
+        caption="Войти через Facebook"
         onPress={() => this.logIn()}
       />
     );

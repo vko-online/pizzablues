@@ -48,7 +48,7 @@ class F8InfoView extends React.Component {
     return (
       <ListContainer
         title="Информация"
-        backgroundImage={require('./img/info-background.png')}
+        backgroundImage={require('./img/info-background2.jpg')}
         backgroundColor={'#47BFBF'}>
         <PureListView
           renderRow={() => { } }

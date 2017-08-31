@@ -74,7 +74,6 @@ class GeneralProductView extends React.Component {
 
     const content = (
       <ListContainer
-        title={'Paul Алматы'}
         selectedSegment={selectedIndex}
         onSegmentChange={this.switchStore}
         backgroundImage={require('./img/product-background5.jpg')}

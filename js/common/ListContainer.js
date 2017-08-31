@@ -180,6 +180,7 @@ class ListContainer extends React.Component {
           <F8Header
             title={this.props.title}
             leftItem={leftItem}
+            foreground={'light'}
             rightItem={this.props.rightItem}
             extraItems={this.props.extraItems}>
             {this.renderHeaderTitle()}

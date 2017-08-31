@@ -26,15 +26,15 @@ class LoginModal extends React.Component {
           style={styles.content}
           source={require('./img/login-background.png')}>
           <Text style={styles.h1}>
-            Log in with Facebook
+            Авторизуйтесь
           </Text>
           <Text style={styles.h2}>
-            to save products to{'\n'}your basket.
+            что бы оставатся на связи{'\n'}с Paul Kazakhstan.
           </Text>
           <LoginButton onLoggedIn={() => this.loggedIn()} />
           <F8Button
             type="secondary"
-            caption="Not Now"
+            caption="Не сейчас"
             source="Modal"
             onPress={() => this.props.navigator.pop()}
           />

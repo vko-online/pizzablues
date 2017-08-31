@@ -13,11 +13,11 @@ PODS:
     - React
   - CodePush/SSZipArchive (1.12.2):
     - React
-  - FBSDKCoreKit (4.14.0):
+  - FBSDKCoreKit (4.18.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.14.0):
+  - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.14.0):
+  - FBSDKShareKit (4.18.0):
     - FBSDKCoreKit
   - React (0.28.0):
     - React/Core (= 0.28.0)
@@ -75,9 +75,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CodePush: 96e1b7358f2305daf4fdf8436c0d23a172599de9
-  FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
-  FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
-  FBSDKShareKit: e8e5d4ccef69b41132fe33acda26db1e33143e33
+  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
+  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
+  FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
   React: 43544faed4af6a0e8fbc4b3abd26141ed654fa49
   react-native-fbsdk: 999c4eec5c84ed4096cc75596a70cf82f8303329
 

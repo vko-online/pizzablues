@@ -210,7 +210,7 @@ var styles = StyleSheet.create({
   titleText: {
     color: '#0c83a9',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
   },
   leftItem: {
     flex: 1,

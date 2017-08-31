@@ -10,6 +10,9 @@ export type Action =
   { type: 'LOADED_ABOUT', list: Array<ParseObject> }
   | { type: 'LOADED_NOTIFICATIONS', list: Array<ParseObject> }
   | { type: 'LOADED_MAPS', list: Array<ParseObject> }
+  | { type: 'NEW_COMMENT', productId: string; text: string; }
+  | { type: 'COMMENT_ADDED', comment: ParseObject; }
+  | { type: 'COMMENT_ADDING', }
   | { type: 'LOADED_FRIENDS_BASKETS', list: Array<{ id: string; name: string; basket: { [key: string]: boolean }; }> }
   | { type: 'LOADED_CONFIG', config: ParseObject }
   | { type: 'LOADED_PAGES', list: Array<ParseObject> }

@@ -16,21 +16,24 @@ var ScrollView = require('ScrollView');
 var StyleSheet = require('StyleSheet');
 var Subscribable = require('Subscribable');
 var Dimensions = require('Dimensions');
+var TextInput = require('TextInput');
 var { Text } = require('F8Text');
 var TouchableOpacity = require('TouchableOpacity');
 var View = require('View');
 var AddToBasketButton = require('./AddToBasketButton');
 var ImageModalView = require('../../common/ImageModalView');
+var CommentView = require('../../common/CommentView');
 var { connect } = require('react-redux');
 var WIDTH = Dimensions.get('window').width;
 var HEIGHT = Dimensions.get('window').height;
 import ImageZoom from 'react-native-image-pan-zoom';
+import Modal from 'react-native-modalbox';
 
 var {
   addToBasket,
   removeFromBasketWithPrompt,
+  addNewComment,
 } = require('../../actions');
-console.log('WIDTH', WIDTH);
 
 var F8ProductDetails = React.createClass({
   mixins: [Subscribable.Mixin],
@@ -38,6 +41,7 @@ var F8ProductDetails = React.createClass({
   getInitialState: function () {
     return {
       scrollTop: new Animated.Value(0),
+      newComment: '',
     };
   },
 
@@ -62,6 +66,66 @@ var F8ProductDetails = React.createClass({
     }
   },
 
+  textChange(text) {
+    this.setState({
+      newComment: text
+    });
+  },
+
+  closeModal() {
+    this.refs.modal.close();
+  },
+
+  sendComment() {
+    this.props.addNewComment(this.state.newComment);
+    this.refs.modal.close();
+  },
+
+  renderModalHeader() {
+    return (
+      <View style={styles.modalHeader}>
+        <TouchableOpacity style={styles.modalButton} onPress={this.closeModal}>
+          <Text style={styles.modalButtonText}>Отмена</Text>
+        </TouchableOpacity>
+        <Text>Отзыв</Text>
+        <TouchableOpacity style={styles.modalButton} onPress={this.sendComment}>
+          <Text style={styles.modalButtonText}>Отправить</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  },
+
+  renderModalContent() {
+    return (
+      <View style={styles.modalContent}>
+        <View style={styles.modalProduct}>
+          <Image style={styles.pictureSmall} source={{ uri: this.props.product.image }} />
+          <Text>{this.props.product.title}</Text>
+        </View>
+        <View style={styles.modalForm}>
+          <TextInput
+            style={styles.modalInput}
+            multiline={true}
+            value={this.state.newComment}
+            onChangeText={this.textChange}/>
+        </View>
+      </View>
+    );
+  },
+
+  renderModal() {
+    return (
+      <Modal style={styles.modal} position={"center"} ref={"modal"}>
+        {this.renderModalHeader()}
+        {this.renderModalContent()}
+      </Modal>
+    );
+  },
+
+  onAddComment: function(productId) {
+    this.refs.modal.open();
+  },
+
   render: function () {
     /*var locationColor = F8Colors.darkText;
     var locationTitle = this.props.product.title.toUpperCase();;
@@ -75,10 +139,10 @@ var F8ProductDetails = React.createClass({
       </Text>
     );*/
 
-    var titleHeader = (
+    var priceHeader = (
       <View>
         <Text style={styles.titlePrice}>
-          {this.props.product.price}
+          {'Цена - '}{this.props.product.price}
         </Text>
         <Text style={styles.time}>
           {this.props.product.otherPrice}
@@ -126,11 +190,16 @@ var F8ProductDetails = React.createClass({
           <View style={styles.pictureWrapper}>
             {productImage}
           </View>
-          <Text style={styles.description}>
-            {this.props.product.description}
-          </Text>
-          <Section>
-            {titleHeader}
+          <Section title={'Описание'}>
+            <Text style={styles.description}>
+              {this.props.product.description}
+            </Text>
+          </Section>
+          <Section title={'Дополнительно'}>
+            {priceHeader}
+          </Section>
+          <Section title={'Отзывы'}>
+            <CommentView product={this.props.product} onAddComment={this.onAddComment} />
           </Section>
           <StoreView store={this.props.product.store} />
           <TouchableOpacity
@@ -165,6 +234,7 @@ var F8ProductDetails = React.createClass({
             </Text>
           </Text>
         </Animated.View>
+        {this.renderModal()}
       </View>
     );
   },
@@ -229,6 +299,11 @@ var styles = StyleSheet.create({
     width: WIDTH,
     height: WIDTH,
   },
+  pictureSmall: {
+    width: 49,
+    height: 49,
+    marginRight: 5,
+  },
   miniHeader: {
     backgroundColor: 'white',
     flexDirection: 'row',
@@ -247,8 +322,9 @@ var styles = StyleSheet.create({
     color: F8Colors.darkText,
   },
   titlePrice: {
-    fontSize: 14,
-    padding: 10,
+    fontSize: 16,
+    marginBottom: 15,
+    // padding: 10,
   },
   title: {
     fontSize: 24,
@@ -300,13 +376,57 @@ var styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
-  }
+  },
+   modal: {
+    justifyContent: 'flex-start',
+    height: HEIGHT - 200,
+    width: 300,
+    paddingHorizontal: 10,
+  },
+  modalHeader: {
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  modalContent: {
+    flex: 1,
+  },
+  modalButton: {
+
+  },
+  modalButtonText: {
+    color: '#6A6AD5',
+  },
+  modalProduct: {
+    height: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    borderWidth: 1,
+    borderColor: '#eee',
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 3,
+    overflow: 'hidden',
+  },
+  modalForm: {
+    flex: 1,
+    borderWidth: 1,
+    borderTopWidth: 0,
+    borderColor: '#eee',
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+    marginBottom: 10,
+  },
+  modalInput: {
+    flex: 1,
+    padding: 10,
+  },
 });
 
 function select(store, props) {
   const productID = props.product.id;
   const friendsGoing = store.friendsBaskets.filter((friend) => friend.basket[productID]);
-
   return {
     isAddedToBasket: !!store.basket[props.product.id],
     isLoggedIn: store.user.isLoggedIn,
@@ -323,6 +443,7 @@ function actions(dispatch, props) {
     addToBasket: (value) => dispatch(addToBasket(id)),
     removeFromBasketWithPrompt:
     () => dispatch(removeFromBasketWithPrompt(props.product)),
+    addNewComment: (text) => dispatch(addNewComment(id, text)),
   };
 }
 

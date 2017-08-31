@@ -66,7 +66,7 @@ class F8NotificationsView extends React.Component {
       <View style={{flex: 1}}>
         <ListContainer
           title="Новости и Акции"
-          backgroundImage={require('./img/notifications-background.png')}
+          backgroundImage={require('./img/notifications-background2.jpg')}
           backgroundColor={'#E78196'}
           {...this.renderTestItems()}>
           <PureListView

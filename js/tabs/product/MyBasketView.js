@@ -73,7 +73,7 @@ class MyBasketView extends React.Component {
       <ListContainer
         title="Избранное"
         parallaxContent={profilePicture}
-        backgroundImage={require('./img/my-f8-background.png')}
+        backgroundImage={require('./img/my-background.jpg')}
         backgroundColor={'#A8D769'}
         onSegmentChange={this.handleSegmentChanged}
         rightItem={rightItem}>

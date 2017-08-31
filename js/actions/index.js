@@ -15,6 +15,7 @@ const testActions = require('./test');
 const installationActions = require('./installation');
 const basketActions = require('./basket');
 const checkoutActions = require('./checkout');
+const commentActions = require('./comment');
 
 module.exports = {
   ...loginActions,
@@ -27,5 +28,6 @@ module.exports = {
   ...navigationActions,
   ...installationActions,
   ...basketActions,
-  ...checkoutActions
+  ...checkoutActions,
+  ...commentActions,
 };

@@ -45,27 +45,27 @@ class LoginScreen extends React.Component {
         </TouchableOpacity>
         <View style={styles.section}>
           <Animated.Image
-            style={this.fadeIn(0)}
-            source={require('./img/devconf-logo.png')}
+            style={[styles.logo, this.fadeIn(0)]}
+            source={require('./img/logo.jpg')}
           />
         </View>
         <View style={styles.section}>
           <Animated.Text style={[styles.h1, this.fadeIn(700, -20)]}>
-            code to
+            Paul
           </Animated.Text>
-          <Animated.Text style={[styles.h1, {marginTop: -30}, this.fadeIn(700, 20)]}>
-            connect
+          <Animated.Text style={[styles.h1, {marginTop: -10}, this.fadeIn(700, 20)]}>
+            Kazakhstan
           </Animated.Text>
           <Animated.Text style={[styles.h2, this.fadeIn(1000, 10)]}>
-            April 12 + 13 / Fort Mason Center
+            Пекарня / Ресторан
           </Animated.Text>
           <Animated.Text style={[styles.h3, this.fadeIn(1200, 10)]}>
-            SAN FRANCISCO, CALIFORNIA
+            АЛМАТЫ
           </Animated.Text>
         </View>
         <Animated.View style={[styles.section, styles.last, this.fadeIn(2500, 20)]}>
           <Text style={styles.loginComment}>
-            Use Facebook to find your friends at F8.
+            Используйте Facebook что бы найти друзей в Paul Kazakhstan
           </Text>
           <LoginButton source="First screen" />
         </Animated.View>
@@ -115,7 +115,7 @@ var styles = StyleSheet.create({
   h1: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: Math.round(74 * scale),
+    fontSize: Math.round(54 * scale),
     color: F8Colors.darkText,
     backgroundColor: 'transparent',
   },
@@ -142,6 +142,12 @@ var styles = StyleSheet.create({
     right: 0,
     top: 20,
     padding: 15,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

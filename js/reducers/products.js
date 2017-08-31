@@ -6,7 +6,16 @@
 import type {
   Store
 } from './stores';
+
 const createParseReducer = require('./createParseReducer');
+
+export type Comment = {
+  id: string;
+  userId: string;
+  displayName: string;
+  updatedAt: Date;
+  text: string;
+}
 
 export type Product = {
   id: string;
@@ -18,6 +27,7 @@ export type Product = {
   otherPrice: string;
   category: string;
   store: Store;
+  comments: Comment[];
 };
 
 function slug(title: string) {
@@ -25,6 +35,7 @@ function slug(title: string) {
 }
 
 function fromParseProducts(product: Object): Product {
+  // console.log('product.get', product.get('comments'), product.get('comments').toJSON());
   return {
     id: product.id,
     title: product.get('title'),
@@ -43,6 +54,7 @@ function fromParseProducts(product: Object): Product {
       phones: product.get('store') ? product.get('store').get('phones') : [],
       enabled: product.get('store') ? product.get('store').get('enabled') : false,
     },
+    comments: product.comments,
   };
 }
 
